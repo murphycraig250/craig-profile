@@ -5,11 +5,16 @@
 # @example
 #   include profile::choco_windows
 class profile::choco_windows (
-  Array[String] $apps = [],
+  Array[String] $apps         = [],
+  Array[String] $exclude_apps = [],
 ) {
   include chocolatey
 
-  $apps.each |String $app| {
+  $filtered_apps = $apps.filter |$app| {
+    ! $exclude_apps.include($app)
+  }
+
+  $filtered_apps.each |String $app| {
     package { $app:
       ensure   => 'latest',
       provider => 'chocolatey',
