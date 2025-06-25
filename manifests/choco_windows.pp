@@ -4,21 +4,19 @@
 #
 # @example
 #   include profile::choco_windows
-class profile::choco_windows (
-  Array[String] $apps         = [],
-  Array[String] $exclude_apps = [],
-) {
-  include chocolatey
+class profile::choco_windows {
+$apps = lookup({
+  name          => 'packages.chocolatey.include',
+  value_type    => Hash,
+  default_value => {},
+})
 
-  $filtered_apps = $apps.filter |$app| {
-    ! $exclude_apps.include($app)
-  }
+create_resources(
+  'profile::choco_install',
+  $apps,)
 
-  $filtered_apps.each |String $app| {
-    package { $app:
-      ensure   => 'latest',
-      provider => 'chocolatey',
-      require  => Class['chocolatey'],
-    }
-  }
+
+#notify {'apps':
+#  message => "${apps}",
+#}
 }
