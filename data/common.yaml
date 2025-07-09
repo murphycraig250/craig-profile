@@ -1,5 +1,4 @@
 ---
-profile::choco_windows::packages:
-  chocolatey:
-    git: {}
-    vscode: {}
+profile::choco_windows::packages.chocolatey:
+  git: {}
+  vscode: {}
