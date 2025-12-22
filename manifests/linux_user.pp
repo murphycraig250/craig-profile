@@ -12,7 +12,6 @@ class profile::linux_user {
             ],
             require => Group['labadmins'],
             uid     => 1002,
-            gid     => 2000,
         }
         accounts::user { 'lucas': 
             password => '$6$gfPtUzuaQGcWC/fJ$96SzKL41OBUi8P8ckM.Nx8G5or2nMQP1VcGOQ7csw1gd4jtNIWyZar6/YcyyvJSy6NIvyrSjGnZK74qT6AZQc0',
@@ -30,7 +29,6 @@ class profile::linux_user {
             ensure => 'present',
             gid    => 2000,
             uid     => 1003,
-            gid     => 2000,
         }
 
     class { 'sudo':
