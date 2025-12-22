@@ -24,7 +24,7 @@ class profile::linux_user {
         }
         accounts::user { 'theo': }
 
-        accounts::group { 'labadmins':
+        group { 'labadmins':
             ensure => 'present',
         }
     }
