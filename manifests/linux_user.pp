@@ -6,7 +6,7 @@ class profile::linux_user {
             locked   => false,
             groups   => [
                 'users',
-            ]
+            ],
             shell    => '/bin/bash',
         }
         accounts::user { 'theo': }
