@@ -12,7 +12,7 @@ class profile::linux_user {
             ],
             require => Group['labadmins'],
             uid     => 1002,
-            gid     => 2000,
+            gid     => 1002,
         }
         accounts::user { 'lucas': 
             password => '$6$gfPtUzuaQGcWC/fJ$96SzKL41OBUi8P8ckM.Nx8G5or2nMQP1VcGOQ7csw1gd4jtNIWyZar6/YcyyvJSy6NIvyrSjGnZK74qT6AZQc0',
@@ -24,7 +24,7 @@ class profile::linux_user {
             shell    => '/bin/bash',
             require => Group['labadmins'],
             uid     => 1003,
-            gid     => 2000,
+            gid     => 1003,
         }
         accounts::user { 'theo': }
 
