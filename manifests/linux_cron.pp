@@ -14,4 +14,5 @@ class profile::linux_cron {
     user => 'root',
     *    =>  $attributes,
     }
+  }
 }
