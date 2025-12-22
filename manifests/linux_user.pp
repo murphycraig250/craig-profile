@@ -41,5 +41,3 @@ class { 'sudo':
         priority => 10,
         content => '%admins ALL=(ALL) NOPASSWD: ALL',
     }
-
-}
