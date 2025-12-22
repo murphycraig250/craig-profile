@@ -1,6 +1,6 @@
 class profile::linux_packages {
 
-$default_packges = [
+$default_packages = [
   'cmatrix',
 ]
 
