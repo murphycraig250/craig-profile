@@ -1,6 +1,9 @@
 class profile::linux_user {
     include accounts 
         accounts::user { 'bradley': }
-        accounts::user { 'lucas': }
+        accounts::user { 'lucas': 
+            password => 'lucas',
+            locked   => false,
+        }
         accounts::user { 'theo': }
     }
