@@ -37,7 +37,8 @@ class { 'sudo':
         'README',
     ],
 }
-    sudo::conf {'labadmins':
-        priority => 10,
-        content => '%admins ALL=(ALL) NOPASSWD: ALL',
-    }
+
+sudo::conf {'labadmins':
+    priority => 10,
+    content => '%labadmins ALL=(ALL) NOPASSWD: ALL',
+}
