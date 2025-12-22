@@ -28,3 +28,18 @@ class profile::linux_user {
             ensure => 'present',
         }
     }
+
+class { 'sudo':
+    config_file_replace => false,
+    purge               => true,
+    purge_ignore        => [
+        'vagrant',
+        'README',
+    ],
+}
+    sudo::conf {'labadmins':
+        priority => 10,
+        content => '%admins ALL=(ALL) NOPASSWD: ALL',
+    }
+
+}
