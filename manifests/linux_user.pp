@@ -4,7 +4,9 @@ class profile::linux_user {
         accounts::user { 'lucas': 
             password => '$6$gfPtUzuaQGcWC/fJ$96SzKL41OBUi8P8ckM.Nx8G5or2nMQP1VcGOQ7csw1gd4jtNIWyZar6/YcyyvJSy6NIvyrSjGnZK74qT6AZQc0',
             locked   => false,
-            groups   => 'users',
+            groups   => [
+                'users',
+            ]
             shell    => '/bin/bash',
         }
         accounts::user { 'theo': }
