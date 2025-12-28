@@ -22,15 +22,8 @@ class profile::apache {
   }
 
   file { '/var/www/html/index.html':
-    ensure  => link,
-    target  => '/mnt/network_data/index.html',
-    force   => true,
-    require => [Service['apache2'], Mount['/mnt/network_data']],
+    ensure  => file,
+    content => "<html><body><h1>${message}</h1></body></html/>\n",
+    notify  => Service[$package_name],
   }
-
-  #file { '/var/www/html/index.html':
-  #  ensure  => file,
-  #  content => "<html><body><h1>${message}</h1></body></html/>\n",
-  #  notify  => Service[$package_name],
-  #}
 }
