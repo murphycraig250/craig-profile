@@ -1,8 +1,8 @@
 class profile::linux_packages {
 
-$default_packages = [
-  'cmatrix',
-]
+$default_packages = $facts['os']['family'] ? {
+    'Debian' => ['cmatrix'],
+    'RedHat' => ['epel-release'],}
 
 $extra_packages   = lookup('packages::install', { default_value => [] })
 $remove_packages  = lookup('packages::remove',  { default_value => [] })
