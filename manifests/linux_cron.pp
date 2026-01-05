@@ -1,10 +1,14 @@
 class profile::linux_cron {
   include cron
 
+  $date = $facts['os']['family'] ? {
+    'Debian' => '/bin/date',
+    'RedHat' => '/usr/bin/date', }
+
   cron::job { 'datetemp':
     minute  => '*/5',
     user    => 'root',
-    command => '/bin/date >> /tmp/cron',
+    command => "${date} >> /tmp/cron",
   }
   
   $cron_jobs = lookup('cron_jobs::create', Hash, 'deep', {} )
