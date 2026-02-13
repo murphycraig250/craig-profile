@@ -10,7 +10,7 @@ class profile::windows_dc {
   $features.each | String $feature | {
     dsc_windowsfeature { $feature :
       dsc_ensure => 'Present',
-      dsc_name   => 'AD-Domain-Services',
+      dsc_name   => $feature,
     }
   }
 # 2. FROM MODULE: dsc-activedirectorydsc
