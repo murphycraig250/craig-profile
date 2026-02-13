@@ -13,9 +13,13 @@ class profile::windows_dc {
 
 # 2. FROM MODULE: dsc-activedirectorydsc
   dsc_addomain { 'localdomain':
-    dsc_domainname        => 'localdomain',
-    dsc_domainnetbiosname => 'LOCALDOMAIN',
-    dsc_credential        => {
+    dsc_domainname                    => 'localdomain',
+    dsc_domainnetbiosname             => 'LOCALDOMAIN',
+    dsc_credential                    => {
+      'user'     => 'Administrator',
+      'password' => Sensitive('Vagrant!23'),
+    },
+    dsc_SafeModeAdministratorPassword => {
       'user'     => 'Administrator',
       'password' => Sensitive('Vagrant!23'),
     },
