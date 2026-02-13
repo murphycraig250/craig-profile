@@ -1,6 +1,5 @@
 class profile::choco_windows {
-
-$default_packages = lookup({
+  $default_packages = lookup({
       name          => 'profile::choco_windows::packages.chocolatey',
       value_type    => Hash,
       default_value => {},
@@ -12,9 +11,9 @@ $default_packages = lookup({
   })
   $packages = $default_packages + $hiera_packages
 
- create_resources(
-  'profile::choco_install',
-  $packages,
-  {}
+  create_resources(
+    'profile::choco_install',
+    $packages,
+    {}
   )
 }
