@@ -6,11 +6,13 @@ class profile::windows_dc {
     type     => 'dword',
   }
   # 1. FROM MODULE: dsc-psdscresources
-  dsc_windowsfeature { 'ADDS_Feature':
-    dsc_ensure => 'Present',
-    dsc_name   => 'AD-Domain-Services',
+  $features = ['ADDS_Feature','RSAT-AD-AdminCenter']
+  $features.each | String $feature | {
+    dsc_windowsfeature { $feature :
+      dsc_ensure => 'Present',
+      dsc_name   => 'AD-Domain-Services',
+    }
   }
-
 # 2. FROM MODULE: dsc-activedirectorydsc
   dsc_addomain { 'localdomain':
     dsc_domainname                    => 'localdomain.test',
