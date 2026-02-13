@@ -15,14 +15,6 @@ class profile::windows_dc {
   dsc_addomain { 'localdomain':
     dsc_domainname                    => 'localdomain',
     dsc_domainnetbiosname             => 'LOCALDOMAIN',
-    dsc_safemodeadministratorpassword => {
-      'user'     => 'puppet',
-      'password' => Sensitive('Puppet!23'),
-    },
-    dsc_domainadministratorcredential => {
-      'user'     => 'puppet',
-      'password' => Sensitive('Puppet!23'),
-    },
     # Wait for the feature to install, then tell the reboot resource to fire
     require                           => Dsc_windowsfeature['ADDS_Feature'],
     notify                            => Reboot['AD_Reboot'],
