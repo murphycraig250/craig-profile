@@ -6,7 +6,7 @@ class profile::windows_dc {
     type     => 'dword',
   }
   # 1. FROM MODULE: dsc-psdscresources
-  $features = ['ADDS_Feature','RSAT-AD-AdminCenter']
+  $features = ['AD-Domain-Services','RSAT-AD-AdminCenter']
   $features.each | String $feature | {
     dsc_windowsfeature { $feature :
       dsc_ensure => 'Present',
