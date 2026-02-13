@@ -13,8 +13,12 @@ class profile::windows_dc {
 
 # 2. FROM MODULE: dsc-activedirectorydsc
   dsc_addomain { 'localdomain':
-    dsc_domainname                    => 'localdomain',
-    dsc_domainnetbiosname             => 'LOCALDOMAIN',
+    dsc_domainname        => 'localdomain',
+    dsc_domainnetbiosname => 'LOCALDOMAIN',
+    dsc_credential        => {
+      'user'     => 'Administrator',
+      'password' => Sensitive('Vagrant!23'),
+    },
     # Wait for the feature to install, then tell the reboot resource to fire
     require                           => Dsc_windowsfeature['ADDS_Feature'],
     notify                            => Reboot['AD_Reboot'],
