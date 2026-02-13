@@ -12,9 +12,9 @@ class profile::windows_dc {
   }
 
 # 2. FROM MODULE: dsc-activedirectorydsc
-  dsc_addomain { 'local':
-    dsc_domainname                    => 'local',
-    dsc_domainnetbiosname             => 'LOCAL',
+  dsc_addomain { 'localdomain':
+    dsc_domainname                    => 'localdomain',
+    dsc_domainnetbiosname             => 'LOCALDOMAIN',
     dsc_createtype                    => 'Forest',
     dsc_safemodeadministratorpassword => {
       'user'     => 'puppet',
