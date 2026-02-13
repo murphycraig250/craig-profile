@@ -19,7 +19,7 @@ class profile::windows_dc {
       'user'     => 'Administrator',
       'password' => Sensitive('Vagrant!23'),
     },
-    dsc_SafeModeAdministratorPassword => {
+    dsc_safemodeadministratorpassword => {
       'user'     => 'Administrator',
       'password' => Sensitive('Vagrant!23'),
     },
