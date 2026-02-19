@@ -13,7 +13,7 @@ class profile::linux_nfsclient {
 
   mount { '/mnt/network_data':
     ensure  => 'mounted',
-    device  => 'ubuntu-primary:/srv/nfs_share', 
+    device  => 'ubuntu-primary.localdomain:/srv/nfs_share', 
     fstype  => 'nfs',
     options => 'defaults,_netdev',
     atboot  => true,
