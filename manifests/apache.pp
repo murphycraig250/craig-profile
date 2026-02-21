@@ -7,7 +7,8 @@
 class profile::apache {
   $package_name = $facts['os']['family'] ? {
     'Debian' => 'apache2',
-    'RedHat' => 'httpd', }
+    'RedHat' => 'httpd',
+  }
 
   $message = lookup('apache::index_message', { default_value => "Hello from ${facts['networking']['hostname']}!" })
 

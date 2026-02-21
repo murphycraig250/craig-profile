@@ -1,13 +1,12 @@
 class profile::linux_packages {
-
-$default_packages = $facts['os']['family'] ? {
+  $default_packages = $facts['os']['family'] ? {
     'Debian' => ['cmatrix'],
-    'RedHat' => ['epel-release'],}
+  'RedHat' => ['epel-release'], }
 
-$extra_packages   = lookup('packages::install', { default_value => [] })
-$remove_packages  = lookup('packages::remove',  { default_value => [] })
+  $extra_packages   = lookup('packages::install', { default_value => [] })
+  $remove_packages  = lookup('packages::remove', { default_value => [] })
 
-$final_packages = ($default_packages + $extra_packages).unique - $remove_packages
+  $final_packages = ($default_packages + $extra_packages).unique - $remove_packages
 
   package { $final_packages:
     ensure => installed,

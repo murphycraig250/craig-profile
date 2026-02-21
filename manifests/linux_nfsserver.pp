@@ -1,5 +1,4 @@
 class profile::linux_nfsserver {
-
   package { 'nfs-kernel-server':
     ensure => installed,
   }
@@ -8,7 +7,7 @@ class profile::linux_nfsserver {
     ensure => directory,
     owner  => 'root',
     group  => 'labadmins',
-    mode   => '0775',
+    mode   => '2775',
   }
 
   file_line { 'nfs_export_config':
