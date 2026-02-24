@@ -7,7 +7,7 @@ class profile::linux_nfsserver {
     ensure => directory,
     owner  => 'root',
     group  => 'labadmins',
-    mode   => '2775',
+    mode   => '0775',
   }
 
   file_line { 'nfs_export_config':
