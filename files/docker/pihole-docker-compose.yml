@@ -3,6 +3,8 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
+    env_file:
+      - .env
     ports:
       # DNS Ports
       - "53:53/tcp"
@@ -19,7 +21,7 @@ services:
       # Set the appropriate timezone for your location (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), e.g:
       TZ: 'Europe/London'
       # Set a password to access the web interface. Not setting one will result in a random password being assigned
-      FTLCONF_webserver_api_password: 'craigcraig'
+      #FTLCONF_webserver_api_password: ''
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'ALL'
       FTLCONF_dns_listeningMode: 'ALL'
     # Volumes store your data between container upgrades

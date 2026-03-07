@@ -20,6 +20,27 @@ class profile::linux_docker_pihole {
     enable => true,
   }
 
+  file { ['/srv/pihole', '/srv/pihole/etc-pihole', '/srv/pihole/etc-dnsmasq.d']:
+    ensure => directory,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
+
+  # Read encrypted password from Hiera
+  $pi_password = hiera('pihole::web_password', 'changeme')
+
+  # Write .env file for Docker Compose
+  file { '/srv/pihole/.env':
+    ensure  => file,
+    content => "WEBPASSWORD=${pi_password}\n",
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0600',
+    require => File['/srv/pihole'],
+    notify  => Exec['deploy_pihole'],
+  }
+
 # Copy Docker Compose file from the local files folder to server
   file { '/srv/pihole/docker-compose.yml':
     ensure  => file,
@@ -27,7 +48,8 @@ class profile::linux_docker_pihole {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    require => Package['docker-compose-v2'],
+    require => File['/srv/pihole'],
+    notify  => Exec['deploy_pihole'],
   }
 
 # Bring up Pi-hole container using Docker Compose
@@ -36,7 +58,7 @@ class profile::linux_docker_pihole {
     cwd         => '/srv/pihole',
     path        => ['/usr/bin', '/usr/local/bin'],
     refreshonly => true,
-    subscribe   => File['/srv/pihole/docker-compose.yml'],
-    require     => [Package['docker.io'], Package['docker-compose-v2']],
+    subscribe   => [File['/srv/pihole/docker-compose.yml'], File['/srv/pihole/.env']],
+    require     => [Package['docker.io'], Package['docker-compose-v2'], File['/srv/pihole/.env'], File['/srv/pihole/docker-compose.yml']],
   }
 }
