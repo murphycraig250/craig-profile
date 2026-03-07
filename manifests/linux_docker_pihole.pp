@@ -23,7 +23,7 @@ class profile::linux_docker_pihole {
 # Copy Docker Compose file from the local files folder to server
   file { '/srv/pihole/docker-compose.yml':
     ensure  => file,
-    source  => 'puppet:///modules/profile/data/docker/pihole-docker-compose.yml',
+    source  => 'puppet:///modules/profile/docker/pihole-docker-compose.yml',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
