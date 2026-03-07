@@ -56,7 +56,6 @@ class profile::linux_docker_pihole {
     cwd         => '/srv/pihole',
     path        => ['/usr/bin', '/usr/local/bin'],
     refreshonly => true,
-    subscribe   => [File['/srv/pihole/docker-compose.yml'], File['/srv/pihole/.env']],
     require     => [Package['docker.io'], Package['docker-compose-v2'], File['/srv/pihole/.env'], File['/srv/pihole/docker-compose.yml']],
   }
 }

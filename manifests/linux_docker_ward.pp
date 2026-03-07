@@ -26,7 +26,6 @@ class profile::linux_docker_ward {
     cwd         => '/srv/ward',
     path        => ['/usr/bin', '/usr/local/bin'],
     refreshonly => true,
-    subscribe   => File['/srv/ward/docker-compose.yml'],
     require     => [Package['docker.io'], Package['docker-compose-v2'], File['/srv/ward/docker-compose.yml']],
   }
 }
