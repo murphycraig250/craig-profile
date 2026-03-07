@@ -28,17 +28,18 @@ class profile::linux_docker_pihole {
   }
 
   # Read encrypted password from Hiera
-  $pi_password = hiera('pihole::web_password', 'changeme')
+  $pi_password = Sensitive(lookup('pihole::web_password', String, 'first', 'changeme'))
   notify { "Pi-hole password: ${pi_password}": }
   # Write .env file for Docker Compose
   file { '/srv/pihole/.env':
-    ensure  => file,
-    content => "WEBPASSWORD=${pi_password}\n",
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0600',
-    require => File['/srv/pihole'],
-    notify  => Exec['deploy_pihole'],
+    ensure    => file,
+    content   => "FTLCONF_webserver_api_password=${pi_password.unwrap}\n",
+    owner     => 'root',
+    group     => 'root',
+    mode      => '0600',
+    show_diff => false,
+    require   => File['/srv/pihole'],
+    notify    => Exec['deploy_pihole'],
   }
 
 # Copy Docker Compose file from the local files folder to server
@@ -54,7 +55,7 @@ class profile::linux_docker_pihole {
 
 # Bring up Pi-hole container using Docker Compose
   exec { 'deploy_pihole':
-    command     => 'docker compose up -d',
+    command     => 'docker compose up -d --force-recreate',
     cwd         => '/srv/pihole',
     path        => ['/usr/bin', '/usr/local/bin'],
     refreshonly => true,
