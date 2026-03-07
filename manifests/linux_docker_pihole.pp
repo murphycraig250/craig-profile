@@ -29,7 +29,7 @@ class profile::linux_docker_pihole {
 
   # Read encrypted password from Hiera
   $pi_password = hiera('pihole::web_password', 'changeme')
-
+  notify { "Pi-hole password: ${pi_password}": }
   # Write .env file for Docker Compose
   file { '/srv/pihole/.env':
     ensure  => file,
