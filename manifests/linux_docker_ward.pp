@@ -1,9 +1,6 @@
 # manifests/ward.pp
 class profile::linux_docker_ward {
-# Ensure Docker and Docker Compose are installed
-  package { ['docker.io', 'docker-compose-v2']:
-    ensure => installed,
-  }
+  include profile::linux_docker
 
   file { '/srv/ward':
     ensure => directory,

@@ -1,9 +1,6 @@
 # manifests/pihole.pp
 class profile::linux_docker_pihole {
-# Ensure Docker and Docker Compose are installed
-  package { ['docker.io', 'docker-compose-v2']:
-    ensure => installed,
-  }
+  include profile::linux_docker
 
 # Ensure systemd-resolved stub listener is off
   ini_setting { 'systemd_resolved_stub_listener':
