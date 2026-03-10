@@ -18,18 +18,18 @@ class profile::linux_user {
     uid     => 1098,
     gid     => 1098,
   }
-  accounts::user { 'lucas':
-    password => '$6$gfPtUzuaQGcWC/fJ$96SzKL41OBUi8P8ckM.Nx8G5or2nMQP1VcGOQ7csw1gd4jtNIWyZar6/YcyyvJSy6NIvyrSjGnZK74qT6AZQc0',
-    locked   => false,
-    groups   => [
-      'users',
-      'labadmins',
-    ],
-    shell    => '/bin/bash',
-    require  => Group['labadmins'],
-    uid      => 1099,
-    gid      => 1099,
-  }
+  # accounts::user { 'lucas':
+  #   password => '$6$gfPtUzuaQGcWC/fJ$96SzKL41OBUi8P8ckM.Nx8G5or2nMQP1VcGOQ7csw1gd4jtNIWyZar6/YcyyvJSy6NIvyrSjGnZK74qT6AZQc0',
+  #   locked   => false,
+  #   groups   => [
+  #     'users',
+  #     'labadmins',
+  #   ],
+  #   shell    => '/bin/bash',
+  #   require  => Group['labadmins'],
+  #   uid      => 1099,
+  #   gid      => 1099,
+  # }
   accounts::user { 'theo': }
 
   group { 'labadmins':
