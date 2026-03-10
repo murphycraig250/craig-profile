@@ -6,6 +6,7 @@ class profile::linux_user {
   include accounts
 
   $host_user  = "${facts['networking']['hostname']}_user"
+  $host_group = "${facts['networking']['hostname']}_group"
 
   accounts::user { $host_user:
     ensure  => present,
