@@ -1,4 +1,4 @@
-linux_user::user_list:  
+profile::linux_user::user_list:  
   lucas:
     locked: false
     uid: 1099

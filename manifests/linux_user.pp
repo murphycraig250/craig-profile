@@ -2,13 +2,15 @@
 #
 # This class configures user accounts (bradley, lucas, theo), creates the labadmins
 # group, and sets up sudo privileges for lab administrators.
-class profile::linux_user {
+#
+# @param user_list Hash of additional user accounts to create.
+class profile::linux_user (
+  Hash $user_list = {},
+) {
   include accounts
 
   $host_user  = "${facts['networking']['hostname']}_user"
   $host_group = "${facts['networking']['hostname']}_group"
-
-  $users_list = (lookup('linux_user::user_list', Hash, 'deep', {}))
 
   accounts::user { $host_user:
     ensure  => present,
@@ -17,5 +19,5 @@ class profile::linux_user {
     sshkeys => ['ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCi43iIOtL6NjRIKxGNaf6k6N8I+qvnCCcEdgWMK/Qkw5audbOBBkb1CLEwdDmqZojUoYLYotDJtQKze/g7wL8aIz19WDCU8et8jyX+WZN3wTU79rS5oLwpDvTKA791wyUNc+42TJHQbvv5kDJHo0OZXH/z+AuOMOyLHbKYtUs3O4iC0kqYDZbwPVK4dgbH3+q+Zs+ve8SsPCOfzGLQclC9JdBfWAvBak/NyV2Qf+Out3bzI5bV8DS/SjMFiPZ65BNalcvkfFtObjvg5HtaGDpUbKE/uCkCutC3g6lRtZcIKVuNjx9o06171z31bb3KQCxf/6Hu12KWCJBhk71oGmRyMCp0G1w/gEQNHNyAP/OVOGFp9VD0qz/Eqy7AM8mPfer8ibwxlkyPT5Q7AnAe1+g07PlJ/mEKxjXxGvaUPJfkefrYc3WBXUlSprD+uD7OT7fV1YUq6DgVVWA6teQ0JnCFlWvVF4R8WSvF9oQa0ksCd9WkoX0OjCiJXimoNR3WygsAdM7tZaKZUsFVQRG6Kjx73uxkRtVDEiM8MRw+H0G3Cimrg1/OsMVIakIpk9HgWnzJtCp7+5D+co95h4abIP3C7W5T0YjYR2v/o1IVdb4W4giSp2S+oBJN5TDTWaAYs4H2wqhrgjUOQc9qx3eb2/In5gUWeICPCVNt9p6PQQ8JZQ== craig@cm-pc'],
   }
 
-  create_resources('accounts::user', $users_list)
+  create_resources('accounts::user', $user_list)
 }
