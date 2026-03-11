@@ -5,5 +5,5 @@ lookup_options:
       knockout_prefix: '--'
 
 profile::linux_user::user_list:  
-  lab_user:
-  --ignore_user:
+  lab_user: {}
+  --ignore_user: {}
