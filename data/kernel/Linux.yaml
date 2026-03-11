@@ -25,6 +25,6 @@ profile::linux_user::user_list:
   testuser:
     ensure: absent
 
-  profile::linux_group::group_list:
-    linux_group: {}
+profile::linux_group::group_list:
+  linux_group: {}
   
