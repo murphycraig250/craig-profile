@@ -3,6 +3,10 @@ lookup_options:
     merge:
       strategy: deep
       knockout_prefix: '--'
+  profile::linux_group::group_list:
+    merge:
+      strategy: deep
+      knockout_prefix: '--'
 
 profile::linux_user::user_list:  
   lab_user:
