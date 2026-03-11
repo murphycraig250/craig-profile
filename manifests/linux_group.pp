@@ -1,7 +1,9 @@
 # Manages Linux group accounts and settings.
 #
 # @summary Manages Linux group accounts and settings
-class profile::linux_group {
+class profile::linux_group (
+  Hash $group_list = {},
+) {
   include accounts
 
   $host_group = "${facts['networking']['hostname']}_group"
@@ -9,6 +11,8 @@ class profile::linux_group {
   group { $host_group:
     ensure => present,
   }
+
+  create_resources('group', $group_list)
 
   class { 'sudo':
     config_file_replace => false,

@@ -9,3 +9,5 @@ profile::linux_user::user_list:
   _user:
     ensure: absent
   
+profile::linux_group::group_list:
+  testgroup: {} 
