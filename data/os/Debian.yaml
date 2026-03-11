@@ -1,6 +1,7 @@
 profile::linux_user::user_list:  
   debian_user:
-    groups: ['debian_group']
+    groups: 
+      - 'debian_group'
 
 profile::linux_group::group_list:
   debian_group: {}

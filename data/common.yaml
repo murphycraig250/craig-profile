@@ -10,7 +10,8 @@ lookup_options:
 
 profile::linux_user::user_list:  
   lab_user:
-    groups: ['lab_group']
+    groups: 
+      - 'lab_group'
   _user:
     ensure: absent
   
