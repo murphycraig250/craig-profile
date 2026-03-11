@@ -8,7 +8,6 @@ class profile::linux_user (
   Hash $user_list = {},
 ) {
   include accounts
-  include profile::linux_group
 
   $host_user  = "${facts['networking']['hostname']}_user"
   $host_group = "${facts['networking']['hostname']}_group"
