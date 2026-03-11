@@ -8,7 +8,7 @@ class profile::linux_user {
   $host_user  = "${facts['networking']['hostname']}_user"
   $host_group = "${facts['networking']['hostname']}_group"
 
-  $users_list = (lookup('linux_user::user_list', Hash, 'deep', []))
+  $users_list = (lookup('linux_user::user_list', Hash, 'deep', {}))
 
   accounts::user { $host_user:
     ensure  => present,
