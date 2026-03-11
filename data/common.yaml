@@ -5,9 +5,17 @@ lookup_options:
       knockout_prefix: '--'
 
 profile::linux_user::user_list:  
-  lab_user: {}
+  lab_user:
+    groups: ['lab_group']
   _user:
     ensure: absent
   
 profile::linux_group::group_list:
-  testgroup: {} 
+  labadmins: {}
+  users: {}
+  lab_group: {}
+  testgroup:
+    ensure: absent
+  _group:
+    ensure: absent
+  
