@@ -1,10 +1,11 @@
+# lint:ignore:strict_indent
 class profile::linux_shell {
   file { '/etc/profile.d/puppet_shortcuts.sh':
     ensure  => file,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => @(EOF)
+    content => @(EOF),
       # Add Puppet to PATH
       export PATH="$PATH:/opt/puppetlabs/bin"
 
@@ -29,3 +30,4 @@ class profile::linux_shell {
     | EOF
   }
 }
+# lint:endignore

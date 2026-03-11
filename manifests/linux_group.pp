@@ -1,6 +1,8 @@
 # Manages Linux group accounts and settings.
 #
 # @summary Manages Linux group accounts and settings
+#
+# @param group_list Hash of group names and their configuration
 class profile::linux_group (
   Hash $group_list = {},
 ) {
