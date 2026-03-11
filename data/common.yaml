@@ -6,3 +6,6 @@ lookup_options:
 
 profile::linux_user::user_list:  
   lab_user: {}
+  _user:
+    ensure: absent
+  
