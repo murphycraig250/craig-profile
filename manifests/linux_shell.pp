@@ -14,7 +14,7 @@ class profile::linux_shell {
         if [ -z "$1" ]; then
           echo "Usage: pl <lookup_key>"
         else
-          /opt/puppetlabs/bin/puppet lookup "$1" --environment production --explain
+          "sudo /opt/puppetlabs/bin/puppet lookup "$1" --environment production --explain"
         fi
       }
 
