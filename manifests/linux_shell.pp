@@ -19,10 +19,10 @@ class profile::linux_shell {
       }
 
       # Shortcuts
-      alias p='/opt/puppetlabs/bin/puppet'
-      alias pa='/opt/puppetlabs/bin/puppet agent -t'
+      alias p='sudo /opt/puppetlabs/bin/puppet'
+      alias pa='sudo /opt/puppetlabs/bin/puppet agent --test'
       alias pcd='cd /etc/puppetlabs/code/environments/production/modules'
-      alias pd='sudo /opt/puppetlabs/bin/r10k deploy environment production -p -v'
+      alias pd='sudo /opt/puppetlabs/puppet/bin/r10k deploy environment production -p -v'
     | EOF
   }
 }
