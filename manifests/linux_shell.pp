@@ -14,15 +14,15 @@ class profile::linux_shell {
         if [ -z "$1" ]; then
           echo "Usage: pl <lookup_key>"
         else
-          puppet lookup "$1" --environment production --explain
+          /opt/puppetlabs/bin/puppet lookup "$1" --environment production --explain
         fi
       }
 
       # Shortcuts
-      alias p='puppet'
-      alias pa='sudo puppet agent -t'
+      alias p='/opt/puppetlabs/bin/puppet'
+      alias pa='/opt/puppetlabs/bin/puppet agent -t'
       alias pcd='cd /etc/puppetlabs/code/environments/production/modules'
-      alias pd='sudo r10k deploy environment production -p -v'
+      alias pd='sudo /opt/puppetlabs/bin/r10k deploy environment production -p -v'
     | EOF
   }
 }
