@@ -7,7 +7,7 @@
 # @example
 #   include profile::linux_docker_ward
 class profile::linux_docker_ward {
-  include profile::linux_docker
+  include 'docker'
 
   file { '/srv/ward':
     ensure => directory,
@@ -28,11 +28,17 @@ class profile::linux_docker_ward {
   }
 
 # Bring up Pi-hole container using Docker Compose
-  exec { 'deploy_ward':
-    command     => 'docker compose up -d --force-recreate',
-    cwd         => '/srv/ward',
-    path        => ['/usr/bin', '/usr/local/bin'],
-    refreshonly => true,
-    require     => [Package['docker.io'], Package['docker-compose-v2'], File['/srv/ward/docker-compose.yml']],
+  # exec { 'deploy_ward':
+  #   command     => 'docker compose up -d --force-recreate',
+  #   cwd         => '/srv/ward',
+  #   path        => ['/usr/bin', '/usr/local/bin'],
+  #   refreshonly => true,
+  #   require     => [Package['docker.io'], Package['docker-compose-v2'], File['/srv/ward/docker-compose.yml']],
+  # }
+
+  docker_compose { 'ward':
+    ensure        => present,
+    compose_files => ['/srv/ward/docker-compose.yml'],
+    require       => File['/srv/ward/docker-compose.yml'],
   }
 }
