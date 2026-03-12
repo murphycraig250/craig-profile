@@ -7,7 +7,7 @@
 # @example
 #   include profile::linux_docker_ward
 class profile::linux_docker_ward {
-  include 'docker'
+  include profile::linux_docker
 
   file { '/srv/ward':
     ensure => directory,

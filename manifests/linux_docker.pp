@@ -6,13 +6,9 @@
 # @example
 #   include profile::linux_docker
 class profile::linux_docker {
-  package { ['docker.io', 'docker-compose-v2']:
-    ensure => installed,
-  }
+  include 'docker'
 
-  service { 'docker':
-    ensure  => running,
-    enable  => true,
-    require => Package['docker.io'],
+  class { 'docker':
+    dns => '8.8.8.8',
   }
 }
