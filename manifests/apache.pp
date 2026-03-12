@@ -1,4 +1,4 @@
-# @summary Installs and configures Apache web server
+# @summary Installs and configures Apache web server#
 #
 # This class installs the Apache package (httpd or apache2 depending on the OS), 
 # ensures the service is running and enabled, and manages a basic index.html file 
