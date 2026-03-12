@@ -11,7 +11,9 @@ class profile::linux_cron {
 
   $date = $facts['os']['family'] ? {
     'Debian' => '/bin/date',
-  'RedHat' => '/usr/bin/date', }
+    'RedHat' => '/usr/bin/date',
+    default  => '/bin/date',
+  }
 
   cron::job { 'datetemp':
     minute  => '*/5',
