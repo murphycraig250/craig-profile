@@ -24,7 +24,6 @@ class profile::linux_docker_ward {
     group   => 'root',
     mode    => '0644',
     require => File['/srv/ward'],
-    notify  => Exec['deploy_ward'],
   }
 
 # Bring up Pi-hole container using Docker Compose
