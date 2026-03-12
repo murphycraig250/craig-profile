@@ -1,0 +1,26 @@
+name: Puppet Unit Tests
+
+on: [push, pull_request]
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+    # This uses the official Docker image from Puppet
+    container:
+      image: puppet/pdk:latest
+
+    steps:
+      - name: Checkout Role Code
+        uses: actions/checkout@v4
+
+      - name: Fix Git Security
+        # This prevents "dubious ownership" errors in Docker
+        run: git config --global --add safe.directory /__w/craig-role/craig-role
+
+      - name: Run PDK Validate
+        run: pdk validate puppet ruby --parallel
+
+      - name: Run Unit Tests
+        run: pdk test unit
+        env:
+          GITHUB_TOKEN: ${{ secrets.PROFILES_TOKEN }}
