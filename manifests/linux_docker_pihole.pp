@@ -7,7 +7,6 @@
 # @example
 #   include profile::linux_docker_pihole
 class profile::linux_docker_pihole {
-  include profile::linux_docker
 
 # Ensure systemd-resolved stub listener is off
   ini_setting { 'systemd_resolved_stub_listener':
