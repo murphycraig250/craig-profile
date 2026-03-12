@@ -39,5 +39,6 @@ class profile::linux_docker_ward {
     ensure        => present,
     compose_files => ['/srv/ward/docker-compose.yml'],
     require       => File['/srv/ward/docker-compose.yml'],
+    subscribe     => File['/srv/ward/docker-compose.yml']
   }
 }
