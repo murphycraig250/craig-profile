@@ -1,3 +1,12 @@
+# @summary Configures a Windows Domain Controller
+#
+# This class automates the setup of a Windows Domain Controller, including 
+# enabling long paths, installing Active Directory Domain Services (ADDS), 
+# promoting the domain, and managing necessary reboots.
+#
+# @example
+#   include profile::windows_dc
+#
 class profile::windows_dc {
   registry_value { 'HKLM\System\CurrentControlSet\Control\FileSystem\LongPathsEnabled':
     ensure   => 'present',

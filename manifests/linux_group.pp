@@ -1,8 +1,12 @@
-# Manages Linux group accounts and settings.
+# @summary Manages Linux group accounts and sudo configuration
 #
-# @summary Manages Linux group accounts and settings
+# This class manages Linux group accounts, including a dynamic host-specific group, 
+# and configures sudo with specific rules for lab administrators.
 #
-# @param group_list Hash of group names and their configuration
+# @example
+#   include profile::linux_group
+#
+# @param group_list Hash of group names and their configuration.
 class profile::linux_group (
   Hash $group_list = {},
 ) {

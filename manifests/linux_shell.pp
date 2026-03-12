@@ -1,4 +1,12 @@
 # lint:ignore:strict_indent
+# @summary Configures shell shortcuts and environment for Linux
+#
+# This class adds Puppet binaries to the system PATH and creates a 
+# collection of helpful shell aliases and functions (like 'pl' for 
+# Puppet lookup) to improve the CLI experience.
+#
+# @example
+#   include profile::linux_shell
 class profile::linux_shell {
   file { '/etc/profile.d/puppet_shortcuts.sh':
     ensure  => file,

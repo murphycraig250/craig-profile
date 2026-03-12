@@ -1,3 +1,11 @@
+# @summary Manages cron jobs for Linux systems
+#
+# This class configures periodic cron jobs, including a default date logging job 
+# and any additional jobs defined in the 'cron_jobs::create' Hiera lookup.
+#
+# @example
+#   include profile::linux_cron
+#
 class profile::linux_cron {
   include cron
 

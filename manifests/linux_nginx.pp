@@ -1,3 +1,10 @@
+# @summary Installs and configures the Nginx web server
+#
+# This class installs the Nginx package, ensures the service is running, 
+# and manages a basic "Managed by Puppet" index.html file.
+#
+# @example
+#   include profile::linux_nginx
 class profile::linux_nginx {
   package { 'nginx':
     ensure => installed,

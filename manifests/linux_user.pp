@@ -1,7 +1,11 @@
-# Manages Linux user accounts and sudo configuration for lab administrators.
+# @summary Manages Linux user accounts and administrative access
 #
-# This class configures user accounts (bradley, lucas, theo), creates the labadmins
-# group, and sets up sudo privileges for lab administrators.
+# This class configures administrative user accounts, including a dynamic 
+# host-specific user, and integrates with the accounts module to manage 
+# SSH keys and group memberships.
+#
+# @example
+#   include profile::linux_user
 #
 # @param user_list Hash of additional user accounts to create.
 class profile::linux_user (

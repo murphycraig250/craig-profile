@@ -1,3 +1,10 @@
+# @summary Configures an NFS server and exports a directory
+#
+# This class sets up an NFS server, creates a directory to be shared, 
+# and configures the exports file to allow network access to that share.
+#
+# @example
+#   include profile::linux_nfsserver
 class profile::linux_nfsserver {
   package { 'nfs-kernel-server':
     ensure => installed,

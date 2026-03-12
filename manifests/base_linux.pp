@@ -1,6 +1,7 @@
-# @summary A short summary of the purpose of this class
+# @summary Provides base configuration for Linux systems
 #
-# A description of what this class does
+# This class provides the foundational configuration common to all Linux systems 
+# in the environment. Currently, it simply notifies that the system is a Linux machine.
 #
 # @example
 #   include profile::base_linux

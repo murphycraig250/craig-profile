@@ -1,3 +1,10 @@
+# @summary Manages Chocolatey package installations on Windows
+#
+# This class orchestrates the installation of Chocolatey packages by combining 
+# default packages with those specified in Hiera and then calling profile::choco_install.
+#
+# @example
+#   include profile::choco_windows
 class profile::choco_windows {
   $default_packages = lookup({
       name          => 'profile::choco_windows::packages.chocolatey',

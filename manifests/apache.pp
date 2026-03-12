@@ -1,6 +1,8 @@
-# @summary A short summary of the purpose of this class
+# @summary Installs and configures Apache web server
 #
-# A description of what this class does
+# This class installs the Apache package (httpd or apache2 depending on the OS), 
+# ensures the service is running and enabled, and manages a basic index.html file 
+# with a message that can be customized via Hiera.
 #
 # @example
 #   include profile::apache

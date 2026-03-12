@@ -1,3 +1,10 @@
+# @summary Configures an NFS client and mounts a remote share
+#
+# This class installs the necessary NFS client packages, creates a local 
+# mount point, and ensures a remote NFS share is mounted at boot.
+#
+# @example
+#   include profile::linux_nfsclient
 class profile::linux_nfsclient {
   package { 'nfs-common':
     ensure => installed,

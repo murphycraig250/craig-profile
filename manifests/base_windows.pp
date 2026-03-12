@@ -1,6 +1,7 @@
-# @summary A short summary of the purpose of this class
+# @summary Provides base configuration for Windows systems
 #
-# A description of what this class does
+# This class provides the foundational configuration common to all Windows systems 
+# in the environment. Currently, it simply notifies that the system is a Windows machine.
 #
 # @example
 #   include profile::base_windows

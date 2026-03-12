@@ -1,4 +1,11 @@
-# manifests/pihole.pp
+# @summary Deploys and configures Pi-hole via Docker
+#
+# This class automates the deployment of Pi-hole using Docker Compose. It handles 
+# directory creation, environment file generation with sensitive passwords, 
+# and systemd-resolved configuration to avoid port conflicts.
+#
+# @example
+#   include profile::linux_docker_pihole
 class profile::linux_docker_pihole {
   include profile::linux_docker
 

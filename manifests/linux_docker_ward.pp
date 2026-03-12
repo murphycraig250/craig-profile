@@ -1,4 +1,11 @@
-# manifests/ward.pp
+# @summary Deploys Ward server monitoring via Docker
+#
+# This class manages the deployment of Ward, a server monitoring tool, 
+# using Docker Compose. It ensures the necessary directories and compose 
+# files are in place before deploying the container.
+#
+# @example
+#   include profile::linux_docker_ward
 class profile::linux_docker_ward {
   include profile::linux_docker
 
