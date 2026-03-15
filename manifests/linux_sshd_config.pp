@@ -4,12 +4,13 @@
 
 class profile::linux_sshd_config {
   file { '/etc/ssh/sshd_config':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0600',
-    content => template('profile/sshd_config.erb'),
-    notify  => Service['ssh'],
+    ensure       => file,
+    owner        => 'root',
+    group        => 'root',
+    mode         => '0600',
+    content      => template('profile/sshd_config.erb'),
+    validate_cmd => '/usr/sbin/sshd -t -f %',
+    notify       => Service['ssh'],
   }
 
   file { '/etc/ssh/sshd_config.d':
