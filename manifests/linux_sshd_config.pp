@@ -18,4 +18,9 @@ class profile::linux_sshd_config {
     purge   => true,
     force   => true,
   }
+
+  service { 'ssh':
+    ensure => running,
+    enable => true,
+  }
 }
