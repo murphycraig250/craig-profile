@@ -6,6 +6,8 @@
 # @example
 #   include profile::linux_motd
 class profile::linux_motd {
+  $banner_text = "Welcome to \n (\l)\nAuthorized users only!\n\n"
+
   class { 'motd':
     content => "
       ================================================
@@ -14,5 +16,26 @@ class profile::linux_motd {
       IP:        ${facts['networking']['ip']}
       ================================================
     ",
+  }
+
+  file { '/etc/issue':
+    ensure  => file,
+    content => $banner_text,
+    owner   => 'root',
+    mode    => '0644',
+    notify  => Service['ssh'],
+  }
+
+  file { '/etc/issue.net':
+    ensure  => file,
+    content => $banner_text,
+    owner   => 'root',
+    mode    => '0644',
+    notify  => Service['ssh'],
+  }
+
+  service { 'ssh':
+    ensure => running,
+    enable => true,
   }
 }
