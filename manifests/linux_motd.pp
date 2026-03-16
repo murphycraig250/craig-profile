@@ -23,7 +23,6 @@ class profile::linux_motd {
     content => $banner_text,
     owner   => 'root',
     mode    => '0644',
-    notify  => Service['ssh'],
   }
 
   file { '/etc/issue.net':
@@ -31,6 +30,5 @@ class profile::linux_motd {
     content => $banner_text,
     owner   => 'root',
     mode    => '0644',
-    notify  => Service['ssh'],
   }
 }
