@@ -33,9 +33,4 @@ class profile::linux_motd {
     mode    => '0644',
     notify  => Service['ssh'],
   }
-
-  service { 'ssh':
-    ensure => running,
-    enable => true,
-  }
 }
