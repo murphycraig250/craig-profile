@@ -27,4 +27,12 @@ class profile::linux_firewall::rules {
     proto => 'tcp',
     jump  => 'accept',
   }
+
+  # --- DOCKER SPECIFIC RULES ---
+  firewall { '200 block bad actor from containers':
+    chain  => 'DOCKER-USER',
+    source => '192.168.1.105',
+    action => 'drop',
+    proto  => 'all',
+  }
 }
