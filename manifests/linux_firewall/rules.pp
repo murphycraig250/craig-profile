@@ -32,7 +32,7 @@ class profile::linux_firewall::rules {
   firewall { '200 block bad actor from containers':
     chain  => 'DOCKER-USER',
     source => '192.168.1.105',
-    action => 'drop',
+    jump   => 'drop',
     proto  => 'all',
   }
 }
