@@ -1,8 +1,8 @@
-test_on = {
+def supported_linux
+  on_supported_os({
     supported_os: [
-      {
-        'operatingsystem' => 'Debian',
-        'operatingsystem' => 'RedHat',
-      }
+      { 'osfamily' => 'Debian' },
+      { 'osfamily' => 'RedHat' },
     ]
-  }
+  })
+end

@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'linux_helper'
 
 describe 'profile::apache' do
-  on_supported_os(test_on).each do |os, os_facts|
+  supported_linux.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
 
