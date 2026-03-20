@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'linux_helper'
 
 describe 'profile::apache' do
-  on_supported_os.each do |os, os_facts|
+  on_supported_os(test_on).each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
 
