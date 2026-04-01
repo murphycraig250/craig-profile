@@ -1,0 +1,4 @@
+---
+puppetdb::master::config::puppet_confdir: "/etc/puppetlabs/puppet"
+puppetdb::master::config::puppet_conf: "/etc/puppetlabs/puppet/puppet.conf"
+puppetdb::master::config::manage_routes: false
