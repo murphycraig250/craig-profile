@@ -6,7 +6,7 @@
 # @example
 #   include profile::choco_windows
 class profile::choco_windows {
-  include chocolatey
+  #include chocolatey
   $default_packages = lookup({
       name          => 'profile::choco_windows::packages.chocolatey',
       value_type    => Hash,
