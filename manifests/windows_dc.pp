@@ -15,10 +15,10 @@ class profile::windows_dc {
     type     => 'dword',
   }
   # 1. FROM MODULE: dsc-psdscresources
-  dsc_windowsfeature { 'ADDS_Feature':
-    dsc_ensure => 'Present',
-    dsc_name   => 'AD-Domain-Services',
-  }
+#  dsc_windowsfeature { 'ADDS_Feature':
+#    dsc_ensure => 'Present',
+#    dsc_name   => 'AD-Domain-Services',
+#  }
 
 # 2. FROM MODULE: dsc-activedirectorydsc
   dsc_addomain { 'localdomain':
@@ -33,7 +33,7 @@ class profile::windows_dc {
       'password' => Sensitive('Vagrant!23'),
     },
     # Wait for the feature to install, then tell the reboot resource to fire
-    require                           => Dsc_windowsfeature['ADDS_Feature'],
+#   require                           => Dsc_windowsfeature['ADDS_Feature'],
     notify                            => Reboot['AD_Reboot'],
   }
 
