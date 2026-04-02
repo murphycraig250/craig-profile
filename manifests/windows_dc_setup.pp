@@ -42,4 +42,12 @@ class profile::windows_dc_setup {
     apply => 'finished', # Wait until the rest of the puppet catalog is done
     when  => 'refreshed',  # Only reboot if the OS actually signals it's needed
   }
+
+# The @@ makes this an EXPORTED resource (stored in PuppetDB, not applied yet)
+  @@host { 'dc-dns':
+    ensure       => present,
+    ip           => $facts['networking']['ip'],
+    host_aliases => ['localdomain.test', 'dc01'],
+    tag          => 'dc_dns_provider',
+}
 }
