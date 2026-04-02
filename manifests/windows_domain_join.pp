@@ -30,9 +30,17 @@ class profile::windows_domain_join { # Inside profile::windows_domain_join
         dsc_name       => $facts['networking']['hostname'],
         notify         => Reboot['after_join'],
       }
+      exec { 'trigger_reboot_on_success':
+        provider  => 'powershell',
+        command   => 'exit 0',
+        onlyif    => 'if ((Get-WmiObject Win32_ComputerSystem).PartOfDomain) { exit 0 } else { exit 1 }',
+        subscribe => Dsc_computer['join_to_domain'],
+        notify    => Reboot['after_join'],
+      }
+
       reboot { 'after_join':
         apply => 'finished',
-        when  => 'refreshed', # This is the magic "Only if something changed" flag
+        when  => 'refreshed',
       }
     }
     else {
