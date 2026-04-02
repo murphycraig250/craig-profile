@@ -31,8 +31,7 @@ class profile::windows_domain_join { # Inside profile::windows_domain_join
       }
       reboot { 'after_join':
         apply     => 'finished',
-        onlyif    => 'if ((Get-WmiObject Win32_ComputerSystem).PartOfDomain) { exit 1 } else { exit 0 }',
-        provider  => 'powershell',
+        onlyif    => 'powershell -ExecutionPolicy Bypass -Command "if ((Get-WmiObject Win32_ComputerSystem).PartOfDomain) { exit 1 } else { exit 0 }"',
         subscribe => Dsc_computer['join_to_domain'],
       }
     }
