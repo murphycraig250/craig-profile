@@ -22,7 +22,6 @@ class profile::windows_domain_join { # Inside profile::windows_domain_join
 
       # 2. Perform the Domain Join
       dsc_computer { 'join_to_domain':
-        ensure         => 'present',
         dsc_domainname => 'localdomain.test',
         dsc_credential => {
           'user'     => 'LOCALDOMAIN\Administrator',
