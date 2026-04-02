@@ -30,11 +30,11 @@ class profile::windows_domain_join { # Inside profile::windows_domain_join
         dsc_name       => $facts['networking']['hostname'],
         notify         => Reboot['after_join'],
       }
-      reboot { 'after_join':
-        apply   => 'finished',
-        when    => 'refreshed',
-        message => 'Puppet is rebooting the computer to complete the domain join.',
-      }
+      # reboot { 'after_join':
+      #   apply   => 'finished',
+      #   when    => 'refreshed',
+      #   message => 'Puppet is rebooting the computer to complete the domain join.',
+      # }
     }
     else {
       notify { 'Waiting for DC':
