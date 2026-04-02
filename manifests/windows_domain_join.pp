@@ -28,13 +28,13 @@ class profile::windows_domain_join { # Inside profile::windows_domain_join
           'password' => Sensitive('Vagrant!23'),
         },
         dsc_name       => $facts['networking']['hostname'],
-        notify         => Reboot['after_join'],
       }
-      # reboot { 'after_join':
-      #   apply   => 'finished',
-      #   when    => 'refreshed',
-      #   message => 'Puppet is rebooting the computer to complete the domain join.',
-      # }
+      reboot { 'after_join':
+        apply     => 'finished',
+        onlyif    => 'if ((Get-WmiObject Win32_ComputerSystem).PartOfDomain) { exit 1 } else { exit 0 }',
+        provider  => 'powershell',
+        subscribe => Dsc_computer['join_to_domain'],
+      }
     }
     else {
       notify { 'Waiting for DC':
