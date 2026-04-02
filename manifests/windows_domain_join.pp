@@ -25,7 +25,7 @@ class profile::windows_domain_join { # Inside profile::windows_domain_join
         ensure         => 'present',
         dsc_domainname => 'localdomain.test',
         dsc_credential => {
-          'user'     => 'Administrator',
+          'user'     => 'LOCALDOMAIN\Administrator',
           'password' => Sensitive('Vagrant!23'),
         },
         dsc_name       => $facts['networking']['hostname'],
