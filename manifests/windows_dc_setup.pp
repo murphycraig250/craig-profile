@@ -5,20 +5,19 @@
 # promoting the domain, and managing necessary reboots.
 #
 # @example
-#   include profile::windows_dc
+#   include profile::windows_dc_setup
 #
-class profile::windows_dc {
+class profile::windows_dc_setup {
   registry_value { 'HKLM\System\CurrentControlSet\Control\FileSystem\LongPathsEnabled':
     ensure   => 'present',
-    data     => [1],
+    data     => 1,
     provider => 'registry',
     type     => 'dword',
   }
-  # 1. FROM MODULE: dsc-psdscresources
-#  dsc_windowsfeature { 'ADDS_Feature':
-#    dsc_ensure => 'Present',
-#    dsc_name   => 'AD-Domain-Services',
-#  }
+
+  windowsfeature { 'AD-Domain-Services':
+    ensure => present,
+  }
 
 # 2. FROM MODULE: dsc-activedirectorydsc
   dsc_addomain { 'localdomain':
@@ -34,12 +33,13 @@ class profile::windows_dc {
     },
     # Wait for the feature to install, then tell the reboot resource to fire
 #   require                           => Dsc_windowsfeature['ADDS_Feature'],
-    notify                            => Reboot['AD_Reboot'],
+    notify                            => Reboot['after_AD-Domain-Services'],
+    require                           => Windowsfeature['AD-Domain-Services'],
   }
 
 # 3. FROM MODULE: puppetlabs-reboot
-  reboot { 'AD_Reboot':
+  reboot { 'after_AD-Domain-Services':
     apply => 'finished', # Wait until the rest of the puppet catalog is done
-    when  => 'pending',  # Only reboot if the OS actually signals it's needed
+    when  => 'refreshed',  # Only reboot if the OS actually signals it's needed
   }
 }
