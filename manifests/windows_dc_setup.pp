@@ -34,7 +34,7 @@ class profile::windows_dc_setup {
     # Wait for the feature to install, then tell the reboot resource to fire
 #   require                           => Dsc_windowsfeature['ADDS_Feature'],
     notify                            => Reboot['after_ad-domain-services'],
-    #require                           => Windowsfeature['ad-domain-services'],
+    require                           => Windowsfeature['ad-domain-services'],
   }
 
 # 3. FROM MODULE: puppetlabs-reboot
