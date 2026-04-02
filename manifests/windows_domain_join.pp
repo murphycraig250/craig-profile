@@ -28,11 +28,11 @@ class profile::windows_domain_join { # Inside profile::windows_domain_join
           'password' => Sensitive('Vagrant!23'),
         },
         dsc_name       => $facts['networking']['hostname'],
+        notify         => Reboot['after_join'],
       }
       reboot { 'after_join':
-        apply     => 'finished',
-        when      => 'refreshed', # This is the magic "Only if something changed" flag
-        subscribe => Dsc_computer['join_to_domain'],
+        apply => 'finished',
+        when  => 'refreshed', # This is the magic "Only if something changed" flag
       }
     }
     else {
