@@ -15,7 +15,7 @@ class profile::windows_dc_setup {
     type     => 'dword',
   }
 
-  windowsfeature { 'AD-Domain-Services':
+  windowsfeature { 'ad-domain-services':
     ensure => present,
   }
 
@@ -33,12 +33,12 @@ class profile::windows_dc_setup {
     },
     # Wait for the feature to install, then tell the reboot resource to fire
 #   require                           => Dsc_windowsfeature['ADDS_Feature'],
-    notify                            => Reboot['after_AD-Domain-Services'],
-    require                           => Windowsfeature['AD-Domain-Services'],
+    notify                            => Reboot['after_ad-domain-services'],
+    require                           => Windowsfeature['ad-domain-services'],
   }
 
 # 3. FROM MODULE: puppetlabs-reboot
-  reboot { 'after_AD-Domain-Services':
+  reboot { 'after_ad-domain-services':
     apply => 'finished', # Wait until the rest of the puppet catalog is done
     when  => 'refreshed',  # Only reboot if the OS actually signals it's needed
   }
