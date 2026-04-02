@@ -29,15 +29,15 @@ class profile::windows_domain_join { # Inside profile::windows_domain_join
       },
       notify         => Reboot['after_join'],
     }
-  } else {
-    notify { 'Waiting for DC':
-      message => 'DC IP not found in PuppetDB yet. Run Puppet on the DC first!',
-    }
-
     reboot { 'after_join':
       apply   => 'finished',
       when    => 'refreshed',
       message => 'Puppet is rebooting the computer to complete the domain join.',
+    }
+  }
+  else {
+    notify { 'Waiting for DC':
+      message => 'DC IP not found in PuppetDB yet. Run Puppet on the DC first!',
     }
   }
 }
