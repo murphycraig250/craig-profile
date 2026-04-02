@@ -31,7 +31,7 @@ class profile::windows_domain_join { # Inside profile::windows_domain_join
       }
       reboot { 'after_join':
         apply     => 'finished',
-        onlyif    => 'powershell -ExecutionPolicy Bypass -Command "if ((Get-WmiObject Win32_ComputerSystem).PartOfDomain) { exit 1 } else { exit 0 }"',
+        when      => 'refreshed', # This is the magic "Only if something changed" flag
         subscribe => Dsc_computer['join_to_domain'],
       }
     }
