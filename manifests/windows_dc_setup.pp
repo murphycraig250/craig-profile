@@ -49,5 +49,5 @@ class profile::windows_dc_setup {
     ip           => $facts['networking']['ip'],
     host_aliases => ['localdomain.test', 'dc01'],
     tag          => 'dc_dns_provider',
-}
+  }
 }
