@@ -13,3 +13,4 @@ class profile::windows_users {
     domainName => 'localdoman.test',
     path       => 'CN=Users,DC=localdoman,DC=test',
   }
+}
