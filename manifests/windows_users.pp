@@ -9,6 +9,7 @@ class profile::windows_users {
   dsc_adorganizationalunit { 'domain_lab_users':
     dsc_name                 => 'lab_users',
     dsc_path                 => 'DC=localdomain,DC=test',
+    dsc_ensure               => 'present',
     dsc_psdscrunascredential => {
       'user'     => 'Administrator',
       'password' => Sensitive('Vagrant!23'),
