@@ -7,9 +7,9 @@
 #
 class profile::windows_users {
   dsc_aduser { 'craig':
-    userName   => 'Craig',
-    password   => 'Craig!23',
-    domainName => 'localdoman.test',
-    path       => 'CN=Users,DC=localdoman,DC=test',
+    dsc_username   => 'Craig',
+    dsc_password   => 'Craig!23',
+    dsc_domainname => 'localdoman.test',
+    dsc_path       => 'CN=Users,DC=localdoman,DC=test',
   }
 }
