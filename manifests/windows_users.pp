@@ -8,7 +8,7 @@
 class profile::windows_users {
   dsc_aduser { 'craig':
     dsc_username   => 'Craig',
-    dsc_password   => 'Craig!23',
+    dsc_password   => Sensitive('Craig!23'),
     dsc_domainname => 'localdoman.test',
     dsc_path       => 'CN=Users,DC=localdoman,DC=test',
   }
