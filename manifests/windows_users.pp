@@ -8,7 +8,7 @@
 class profile::windows_users {
   dsc_adorganizationalunit { 'lab_users':
     dsc_name                 => 'lab_users',
-    dsc_path                 => 'OU=lab_users,DC=localdomain,DC=test',
+    dsc_path                 => 'DC=localdomain,DC=test',
     require                  => Dsc_addomain['localdomain'],
     dsc_psdscrunascredential => {
       'user'     => 'Administrator',
@@ -23,7 +23,7 @@ class profile::windows_users {
       'password' => Sensitive('Th@tch3rs1'),
     },
     dsc_domainname           => 'localdomain.test',
-    dsc_path                 => 'CN=lab_users,DC=localdomain,DC=test',
+    dsc_path                 => 'OU=lab_users,DC=localdomain,DC=test',
     dsc_psdscrunascredential => {
       'user'     => 'Administrator',
       'password' => Sensitive('Vagrant!23'),
