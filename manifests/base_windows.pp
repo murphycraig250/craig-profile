@@ -7,4 +7,9 @@
 #   include profile::base_windows
 class profile::base_windows {
   notify { 'This is a Windows machine.': }
+
+  group { 'Administrators':
+    ensure  => 'present',
+    members => ['LOCALDOMAIN\Craig'],
+  }
 }
