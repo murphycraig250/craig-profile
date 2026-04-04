@@ -10,7 +10,7 @@ class profile::windows_users {
     dsc_username             => 'Craig',
     dsc_password             => {
       'user'     => 'craig',
-      'password' => Sensitive('Craig!23'),
+      'password' => Sensitive('Th@tch3rs1'),
     },
     dsc_domainname           => 'localdomain.test',
     dsc_path                 => 'CN=Users,DC=localdomain,DC=test',
