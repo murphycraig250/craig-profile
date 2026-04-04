@@ -6,7 +6,7 @@
 #   include profile::windows_users
 #
 class profile::windows_users {
-  dsc_aduser { Craig:
+  dsc_aduser { 'craig':
     ensure     => 'present',
     userName   => 'Craig',
     password   => 'Craig!23',
