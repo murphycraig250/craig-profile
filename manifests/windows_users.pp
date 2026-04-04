@@ -7,7 +7,6 @@
 #
 class profile::windows_users {
   dsc_aduser { 'craig':
-    ensure     => 'present',
     userName   => 'Craig',
     password   => 'Craig!23',
     domainName => 'localdoman.test',
