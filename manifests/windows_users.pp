@@ -8,7 +8,7 @@
 class profile::windows_users {
   dsc_adorganizationalunit { 'lab_users':
     dsc_name                 => 'lab_users',
-    dsc_path                 => 'DC=localdomain,DC=test',
+    dsc_path                 => 'OU=lab_users,DC=localdomain,DC=test',
     require                  => Dsc_addomain['localdomain'],
     dsc_psdscrunascredential => {
       'user'     => 'Administrator',
