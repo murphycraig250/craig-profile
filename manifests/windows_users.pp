@@ -7,9 +7,17 @@
 #
 class profile::windows_users {
   dsc_aduser { 'craig':
-    dsc_username   => 'Craig',
-    dsc_password   => Sensitive('Craig!23'),
-    dsc_domainname => 'localdoman.test',
-    dsc_path       => 'CN=Users,DC=localdoman,DC=test',
+    dsc_username             => 'Craig',
+    dsc_password             => {
+      'user'     => 'craig',
+      'password' => Sensitive('Craig!23'),
+    },
+    dsc_domainname           => 'localdoman.test',
+    dsc_path                 => 'CN=Users,DC=localdoman,DC=test',
+    dsc_psdscrunascredential => {
+      'user'     => 'Administrator',
+      'password' => Sensitive('Vagrant!23'),
+    },
+    require                  => Dsc_addomain['localdomain'],
   }
 }
