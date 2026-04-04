@@ -15,18 +15,18 @@ class profile::windows_users {
     },
   }
 
-  dsc_aduser { 'craig':
-    dsc_username             => 'Craig',
-    dsc_password             => {
-      'user'     => 'craig',
-      'password' => Sensitive('Th@tch3rs1'),
-    },
-    dsc_domainname           => 'localdomain.test',
-    dsc_path                 => 'OU=lab_users,DC=localdomain,DC=test',
-    dsc_psdscrunascredential => {
-      'user'     => 'LOCALDOMAIN\Administrator',
-      'password' => Sensitive('Vagrant!23'),
-    },
-    require                  => Dsc_adorganizationalunit['lab_users'],
-  }
+  # dsc_aduser { 'craig':
+  #   dsc_username             => 'Craig',
+  #   dsc_password             => {
+  #     'user'     => 'craig',
+  #     'password' => Sensitive('Th@tch3rs1'),
+  #   },
+  #   dsc_domainname           => 'localdomain.test',
+  #   dsc_path                 => 'OU=lab_users,DC=localdomain,DC=test',
+  #   dsc_psdscrunascredential => {
+  #     'user'     => 'LOCALDOMAIN\Administrator',
+  #     'password' => Sensitive('Vagrant!23'),
+  #   },
+  #   require                  => Dsc_adorganizationalunit['lab_users'],
+  # }
 }
