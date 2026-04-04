@@ -6,11 +6,11 @@
 #   include profile::windows_users
 #
 class profile::windows_users {
-  dsc_adorganizationalunit { 'lab_users':
+  dsc_adorganizationalunit { 'domain_lab_users':
     dsc_name                 => 'lab_users',
-    dsc_path                 => 'OU=lab_users,DC=localdomain,DC=test',
+    dsc_path                 => 'DC=localdomain,DC=test',
     dsc_psdscrunascredential => {
-      'user'     => 'LOCALDOMAIN\Administrator',
+      'user'     => 'Administrator',
       'password' => Sensitive('Vagrant!23'),
     },
   }
