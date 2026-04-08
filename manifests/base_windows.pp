@@ -11,5 +11,6 @@ class profile::base_windows {
   group { 'Administrators':
     ensure  => 'present',
     members => ['LOCALDOMAIN\Craig'],
+    require => Dsc_aduser['craig'],
   }
 }
