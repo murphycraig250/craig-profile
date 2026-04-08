@@ -11,12 +11,13 @@ class profile::windows_users {
     dsc_path                 => 'DC=localdomain,DC=test',
     dsc_ensure               => 'present',
     dsc_psdscrunascredential => {
-      'user'     => 'Administrator',
+      'user'     => 'LOCALDOMAIN\Administrator',
       'password' => Sensitive('Vagrant!23'),
     },
   }
 
   dsc_aduser { 'craig':
+    dsc_ensure               => 'present',
     dsc_username             => 'Craig',
     dsc_password             => {
       'user'     => 'craig',
