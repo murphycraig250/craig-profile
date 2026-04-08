@@ -7,7 +7,17 @@
 #
 class profile::windows_users {
   dsc_adorganizationalunit { 'domain_lab_users':
-    dsc_name                 => 'lab_users',
+    dsc_name                 => 'Lab Users',
+    dsc_path                 => 'DC=localdomain,DC=test',
+    dsc_ensure               => 'present',
+    dsc_psdscrunascredential => {
+      'user'     => 'LOCALDOMAIN\Administrator',
+      'password' => Sensitive('Vagrant!23'),
+    },
+  }
+
+  dsc_adorganizationalunit { 'domain_lab_devices':
+    dsc_name                 => 'Lab Devices',
     dsc_path                 => 'DC=localdomain,DC=test',
     dsc_ensure               => 'present',
     dsc_psdscrunascredential => {
