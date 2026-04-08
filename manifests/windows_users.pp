@@ -34,7 +34,7 @@ class profile::windows_users {
       'password' => Sensitive('Th@tch3rs1'),
     },
     dsc_domainname           => 'localdomain.test',
-    dsc_path                 => 'OU=Lab_Users,DC=localdomain,DC=test',
+    dsc_path                 => 'OU=Lab Users,DC=localdomain,DC=test',
     dsc_psdscrunascredential => {
       'user'     => 'LOCALDOMAIN\Administrator',
       'password' => Sensitive('Vagrant!23'),
