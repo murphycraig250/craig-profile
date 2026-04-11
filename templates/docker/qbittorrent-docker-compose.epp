@@ -1,3 +1,7 @@
+networks:
+  servarrnetwork:
+    name: servarrnetwork
+
 services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
