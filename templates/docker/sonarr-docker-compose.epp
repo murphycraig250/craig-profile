@@ -1,0 +1,14 @@
+services:
+    sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /srv/sonarr:/config
+      - /srv/sonarr/data:/data
+    ports:
+      - 8989:8989
+    network_mode: "container:gluetun"
