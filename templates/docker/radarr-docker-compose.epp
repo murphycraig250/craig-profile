@@ -1,17 +1,15 @@
-networks:
-  servarrnetwork:
-    external: true
-
 services:
   radarr:
-    image: linuxserver/radarr
+    image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
-    ports:
-      - 7878:7878
+    # network_mode makes this container part of the Gluetun "pod"
+    network_mode: "container:gluetun"
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
     volumes:
       - /srv/radarr/config:/config
       - /srv/jellyfin/data/movies:/movies
-    restart: unless-stopped
-    networks:
-      servarrnetwork:
-        ipv4_address: 172.39.0.4
+    # No ports here! They go in Gluetun.
