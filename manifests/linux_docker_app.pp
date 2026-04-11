@@ -13,7 +13,7 @@
 #     base_dir = '/srv',
 #     port = '8080',
 #   }
-define profile::linuxdocker_app (
+define profile::linux_docker_app (
   String $deploy_user = 'craig',
   String $base_dir = '/srv',
   Optional[String] $port = undef,
