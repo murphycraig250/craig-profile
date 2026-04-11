@@ -5,12 +5,12 @@
 # @param base_dir The base directory where the app_name directory will be created
 #
 # @example
-#   profile::docker_app { 'myapp':
+#   profile::docker_dir { 'myapp':
 #     app_name   => 'myapp',
 #     deploy_user => 'appuser',
 #     base_dir   => '/srv',
 #   }
-define profile::docker_app (
+define profile::docker_dir (
   String $app_name,
   String $deploy_user,
   String $base_dir = '/srv',
