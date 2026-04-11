@@ -4,7 +4,7 @@
 # with appropriate compose configuration and file permissions.
 #
 #
-class profile::linux_docker_whoami {
-  profile::docker_app { 'whoami':
+class profile::linux_docker_jellyfin {
+  profile::docker_app { 'jellyfin':
   }
 }
