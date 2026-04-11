@@ -18,8 +18,8 @@ define profile::linux_docker_app (
   String $deploy_user = 'craig',
   String $base_dir = '/srv',
   Optional[String] $port = undef,
-  Optional[Sensitive[String]] $docker_user     = undef,
-  Optional[Sensitive[String]] $docker_password = undef,
+  Optional[Variant[String, Sensitive[String]]] $docker_user     = undef,
+  Optional[Variant[String, Sensitive[String]]] $docker_password = undef,
 ) {
   $app_name     = $title
   $app_path     = "${base_dir}/${app_name}"
