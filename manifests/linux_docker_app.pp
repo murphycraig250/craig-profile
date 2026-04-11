@@ -6,6 +6,7 @@
 # @param deploy_user The user that will own the application files
 # @param base_dir The base directory path where applications are deployed
 # @param port Optional port number for the application
+# @param extra_params Additional parameters for future extensibility
 #
 # @example
 #   profile::linux_docker_app { 'myapp':
@@ -17,6 +18,7 @@ define profile::linux_docker_app (
   String $deploy_user = 'craig',
   String $base_dir = '/srv',
   Optional[String] $port = undef,
+  Hash $extra_params = {},
 ) {
   $app_name     = $title
   $app_path     = "${base_dir}/${app_name}"
@@ -56,9 +58,22 @@ define profile::linux_docker_app (
     mode   => '0644',
     source => "puppet:///modules/profile/docker/${app_name}-docker-compose.yml",
   }
+  # ----------------------------
+  # 3. Environment file
+  # ----------------------------
+  $env_data = $extra_params['environment'] ? { undef => {}, default => $extra_params['environment'] }
+  file { "${app_path}/.env":
+    ensure  => file,
+    owner   => $deploy_user,
+    group   => 'docker',
+    mode    => '0600',
+    content => epp('profile/docker/env.epp', {
+        env => $env_data,
+    }),
+  }
 
   # ----------------------------
-  # 3. Container lifecycle
+  # 4. Container lifecycle
   # ----------------------------
   docker_compose { $app_name:
     ensure        => present,
