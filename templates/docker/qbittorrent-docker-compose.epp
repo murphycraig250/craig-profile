@@ -1,6 +1,6 @@
 networks:
   servarrnetwork:
-    name: servarrnetwork
+    external: true
 
 services:
   qbittorrent:
