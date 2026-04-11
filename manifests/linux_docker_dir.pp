@@ -37,11 +37,4 @@ define profile::linux_docker_dir (
     group  => 'docker',
     mode   => '0775',
   }
-
-  file { "${app_path}/compose.yaml":
-    ensure => file,
-    owner  => $deploy_user,
-    group  => 'docker',
-    mode   => '0644',
-  }
 }

@@ -3,21 +3,32 @@
 # This profile configures and deploys the whoami Docker application
 # with appropriate compose configuration and file permissions.
 #
-class profile::linux_docker_whoami {
-  profile::linux_docker_dir { 'whoami':
-    app_name    => 'whoami',
-    deploy_user => 'craig',
+# @param deploy_user The username for deploying the whoami application
+# @param deploy_app The name of the application being deployed
+#
+class profile::linux_docker_whoami (
+  String $deploy_user = 'craig',
+  String $deploy_app  = 'whoami',
+) {
+  $app_path     = "/srv/${deploy_app}"
+  $compose_file = "${app_path}/compose.yaml"
+
+  profile::linux_docker_dir { $deploy_app:
+    app_name    => $deploy_app,
+    deploy_user => $deploy_user,
   }
 
-  file { '/srv/whoami/compose.yaml':
+  file { $compose_file:
     ensure => file,
-    source => 'puppet:///modules/profile/docker/whoami-compose.yaml',
+    owner  => $deploy_user,
+    group  => 'docker',
     mode   => '0644',
+    source => "puppet:///modules/profile/docker/${deploy_app}-compose.yaml",
   }
 
-  docker_compose { 'whoami':
+  docker_compose { $deploy_app:
     ensure        => present,
-    compose_files => ['/srv/whoami/compose.yaml'],
-    subscribe     => File['/srv/whoami/compose.yaml'],
+    compose_files => [$compose_file],
+    subscribe     => File[$compose_file],
   }
 }
