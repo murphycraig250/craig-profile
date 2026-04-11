@@ -18,7 +18,8 @@ define profile::linux_docker_app (
   String $deploy_user = 'craig',
   String $base_dir = '/srv',
   Optional[String] $port = undef,
-  Hash $extra_params = {},
+  Optional[Sensitive[String]] $docker_user     = undef,
+  Optional[Sensitive[String]] $docker_password = undef,
 ) {
   $app_name     = $title
   $app_path     = "${base_dir}/${app_name}"
@@ -52,28 +53,18 @@ define profile::linux_docker_app (
   # 2. Compose file
   # ----------------------------
   file { $compose_file:
-    ensure => file,
-    owner  => $deploy_user,
-    group  => 'docker',
-    mode   => '0644',
-    source => "puppet:///modules/profile/docker/${app_name}-docker-compose.yml",
-  }
-  # ----------------------------
-  # 3. Environment file
-  # ----------------------------
-  $env_data = $extra_params['environment'] ? { undef => {}, default => $extra_params['environment'] }
-  file { "${app_path}/.env":
     ensure  => file,
     owner   => $deploy_user,
     group   => 'docker',
     mode    => '0600',
-    content => epp('profile/docker/env.epp', {
-        env => $env_data,
+    content => epp("profile/docker/${app_name}-docker-compose.epp", {
+        'docker_user'     => $docker_user =~ Sensitive ? { true => $docker_user.unwrap,     default => undef },
+        'docker_password' => $docker_password =~ Sensitive ? { true => $docker_password.unwrap, default => undef },
     }),
   }
 
   # ----------------------------
-  # 4. Container lifecycle
+  # 3. Container lifecycle
   # ----------------------------
   docker_compose { $app_name:
     ensure        => present,

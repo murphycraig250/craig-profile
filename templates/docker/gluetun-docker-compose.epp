@@ -1,0 +1,39 @@
+<%- | String $docker_user,
+      String $docker_password,
+| -%>
+---
+networks:
+  servarrnetwork:
+    name: servarrnetwork
+    ipam:
+      config:
+        - subnet: 172.39.0.0/24
+
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    networks:
+      servarrnetwork:
+        ipv4_address: 172.39.0.2
+    ports:
+      - 8000:8000 # gluetun web interface
+      - 8080:8080 # qbittorrent web interface
+      - 6881:6881 # qbittorrent torrent port
+      - 6881:6881/udp # qbittorrent torrent port
+    volumes:
+      - /srv/gluetun:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=nordvpn
+      - VPN_TYPE=openvpn
+      - TZ=Europe/London
+      - HEALTH_VPN_DURATION_INITIAL=120s
+      - SERVER_COUNTRIES=Netherlands
+      - SERVER_CATEGORIES=Standard VPN servers
+      - OPENVPN_USERNAME=<%= $docker_user %>
+      - OPENVPN_PASSWORD=<%= $docker_password %>
+    restart: unless-stopped
