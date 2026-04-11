@@ -6,16 +6,20 @@
 class profile::linux_docker_whoami {
   include profile::linux_docker
 
-  profile::docker_app { 'whoami':
+  profile::linux_docker_dir { 'whoami':
     app_name    => 'whoami',
     deploy_user => 'craig',
   }
 
   file { '/srv/whoami/compose.yaml':
     ensure => file,
-    owner  => 'craig',
-    group  => 'docker',
-    mode   => '0644',
     source => 'puppet:///modules/profile/docker/whoami-compose.yaml',
+    mode   => '0644',
+  }
+
+  docker_compose { 'whoami':
+    ensure        => present,
+    compose_files => ['/srv/whoami/compose.yaml'],
+    subscribe     => File['/srv/whoami/compose.yaml'],
   }
 }
