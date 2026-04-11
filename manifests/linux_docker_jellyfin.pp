@@ -5,6 +5,6 @@
 #
 #
 class profile::linux_docker_jellyfin {
-  profile::docker_app { 'jellyfin':
+  profile::linux_docker_app { 'jellyfin':
   }
 }

@@ -5,6 +5,6 @@
 #
 #
 class profile::linux_docker_whoami {
-  profile::docker_app { 'whoami':
+  profile::linux_docker_app { 'whoami':
   }
 }

@@ -8,12 +8,12 @@
 # @param port Optional port number for the application
 #
 # @example
-#   profile::docker_app { 'myapp':
+#   profile::linux_docker_app { 'myapp':
 #     deploy_user = 'craig',
 #     base_dir = '/srv',
 #     port = '8080',
 #   }
-define profile::docker_app (
+define profile::linuxdocker_app (
   String $deploy_user = 'craig',
   String $base_dir = '/srv',
   Optional[String] $port = undef,
