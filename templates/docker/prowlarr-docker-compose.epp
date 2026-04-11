@@ -8,8 +8,4 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /srv/prowlarr:/config
     restart: unless-stopped
-    depends_on:
-      gluetun:
-        condition: service_healthy
-        restart: true
     network_mode: container:gluetun

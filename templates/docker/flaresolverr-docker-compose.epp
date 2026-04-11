@@ -7,9 +7,5 @@ services:
       - LOG_HTML=${LOG_HTML:-false}
       - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
       - TZ=Europe/London
-    depends_on:
-      gluetun:
-        condition: service_healthy
-        restart: true
     network_mode: container:gluetun
     restart: unless-stopped
