@@ -20,7 +20,7 @@ define profile::linux_docker_app (
 ) {
   $app_name     = $title
   $app_path     = "${base_dir}/${app_name}"
-  $compose_file = "${app_path}/compose.yaml"
+  $compose_file = "${app_path}/docker-compose.yml"
 
   # ----------------------------
   # 1. Base directory structure
@@ -54,7 +54,7 @@ define profile::linux_docker_app (
     owner  => $deploy_user,
     group  => 'docker',
     mode   => '0644',
-    source => "puppet:///modules/profile/docker/${app_name}-compose.yaml",
+    source => "puppet:///modules/profile/docker/${app_name}-docker-compose.yml",
   }
 
   # ----------------------------
