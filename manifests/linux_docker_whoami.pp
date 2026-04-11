@@ -4,7 +4,7 @@
 # with appropriate compose configuration and file permissions.
 #
 class profile::linux_docker_whoami {
-  include profile::linux_docker_dir
+  include profile::linux_docker
 
   profile::docker_app { 'whoami':
     app_name    => 'whoami',
