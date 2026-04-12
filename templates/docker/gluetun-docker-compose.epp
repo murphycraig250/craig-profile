@@ -39,5 +39,7 @@ services:
       - OPENVPN_USER=<%= $docker_user %>
       - OPENVPN_PASSWORD=<%= $docker_password %>
       - DNS_UPSTREAEM_PLAIN_ADDRESSES=1.1.1.1
-      - FIREWALL_OUTBOUND_SUBNETS=0.0.0.0/0
+      - FIREWALL_OUTBOUND_SUBNETS=172.39.0.0/24,192.168.1.0/24
+      - DNS_KEEP_NAMESERVER_NAMES=on
+      - HTTPPROXY=off
     restart: unless-stopped
