@@ -3,7 +3,6 @@ services:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
     # network_mode makes this container part of the Gluetun "pod"
-    network_mode: "container:gluetun"
     restart: unless-stopped
     environment:
       - PUID=1000

@@ -25,9 +25,6 @@ services:
       - 8080:8080 # qbittorrent web interface
       - 6881:6881 # qbittorrent torrent port
       - 6881:6881/udp # qbittorrent torrent port
-      - 7878:7878 # radarr web interface
-      - 9696:9696 # prowlarr
-      - 8191:8191 # flaresolverr
     volumes:
       - /srv/gluetun:/gluetun
     environment:
@@ -39,8 +36,6 @@ services:
       - OPENVPN_USER=<%= $docker_user %>
       - OPENVPN_PASSWORD=<%= $docker_password %>
       - DNS_UPSTREAM_PLAIN_ADDRESSES=1.1.1.1:53
-      - FIREWALL_OUTBOUND_SUBNETS=172.39.0.0/24,192.168.1.0/24,1.1.1.1/32,8.8.8.8/32
-      - FIREWALL_INPUT_PORTS=8000,8080,6881,7878,9696,8191
       - FIREWALL_DEBUG=on
       - DOT=off
       - DNS_KEEP_NAMESERVER_NAMES=on
