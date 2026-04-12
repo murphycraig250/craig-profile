@@ -3,6 +3,8 @@ services:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
     # network_mode makes this container part of the Gluetun "pod"
+    networks:
+      - servarr
     restart: unless-stopped
     ports:
       - "7878:7878"

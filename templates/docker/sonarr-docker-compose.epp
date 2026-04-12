@@ -2,6 +2,8 @@ services:
     sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
+    networks:
+      - servarr
     restart: unless-stopped
     environment:
       - TZ=Europe/London
