@@ -34,12 +34,10 @@ services:
       - VPN_SERVICE_PROVIDER=nordvpn
       - VPN_TYPE=openvpn
       - TZ=Europe/London
-      - HEALTH_VPN_DURATION_INITIAL=120s
       - SERVER_COUNTRIES=Netherlands,Germany,Belgium,Switzerland
       - SERVER_CATEGORIES=Standard VPN servers
       - OPENVPN_USER=<%= $docker_user %>
       - OPENVPN_PASSWORD=<%= $docker_password %>
-      - DOT=off
-      - DNS_ADDRESS=1.1.1.1
-      - FIREWALL_OUTBOUND_SUBNETS=172.39.0.2/32,172.39.0.1/32,172.39.0.0/24,192.168.1.0/24
+      - DNS_UPSTREAEM_PLAIN_ADDRESSES=1.1.1.1
+      - FIREWALL_OUTBOUND_SUBNETS=0.0.0.0/0
     restart: unless-stopped
