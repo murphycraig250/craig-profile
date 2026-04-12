@@ -7,7 +7,7 @@ networks:
     name: servarrnetwork
     ipam:
       config:
-        - subnet: 172.39.0.0/24sudo 
+        - subnet: 172.39.0.0/24
 
 services:
   gluetun:
