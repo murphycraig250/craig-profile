@@ -8,3 +8,5 @@ services:
       - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
       - TZ=Europe/London
     restart: unless-stopped
+    ports:
+      - 8191:8191
