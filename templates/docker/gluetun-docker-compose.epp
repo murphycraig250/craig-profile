@@ -10,9 +10,6 @@ services:
       - NET_ADMIN
     devices:
       - /dev/net/tun:/dev/net/tun
-    networks:
-      servarrnetwork:
-        ipv4_address: 172.39.0.2
     ports:
       - 8000:8000 # gluetun web interface
       - 8080:8080 # qbittorrent web interface
