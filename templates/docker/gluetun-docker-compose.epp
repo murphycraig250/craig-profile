@@ -2,13 +2,6 @@
       String $docker_password,
 | -%>
 ---
-networks:
-  servarrnetwork:
-    name: servarrnetwork
-    ipam:
-      config:
-        - subnet: 172.39.0.0/24
-
 services:
   gluetun:
     image: qmcgaw/gluetun
@@ -36,8 +29,7 @@ services:
       - OPENVPN_USER=<%= $docker_user %>
       - OPENVPN_PASSWORD=<%= $docker_password %>
       - DNS_UPSTREAM_PLAIN_ADDRESSES=1.1.1.1:53
-      - FIREWALL_DEBUG=on
+      - FIREWALL_DEBUG=off
       - DOT=off
-      - DNS_KEEP_NAMESERVER_NAMES=on
       - HTTPPROXY=off
     restart: unless-stopped
