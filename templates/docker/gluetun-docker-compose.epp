@@ -7,7 +7,7 @@ networks:
     name: servarrnetwork
     ipam:
       config:
-        - subnet: 172.39.0.0/24
+        - subnet: 172.39.0.0/24sudo 
 
 services:
   gluetun:
@@ -41,5 +41,5 @@ services:
       - OPENVPN_PASSWORD=<%= $docker_password %>
       - DOT=off
       - DNS_ADDRESS=1.1.1.1
-      - FIREWALL_OUTBOUND_SUBNETS=172.39.0.0/24,192.168.1.0/24
+      - FIREWALL_OUTBOUND_SUBNETS=172.39.0.2/32,172.39.0.0/24,192.168.1.0/24
     restart: unless-stopped
