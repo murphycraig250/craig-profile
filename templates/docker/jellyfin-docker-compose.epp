@@ -13,5 +13,6 @@ services:
     volumes:
       - /srv/jellyfin/config:/config
       - /srv/jellyfin/data/movies:/movies
+      - /srv/jellyfin/data/tvshows:/tvshows
       - /srv/qbittorrent/data/downloads:/downloads
     restart: unless-stopped

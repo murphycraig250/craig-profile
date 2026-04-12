@@ -25,8 +25,5 @@ services:
       - SERVER_CATEGORIES=Standard VPN servers
       - OPENVPN_USER=<%= $docker_user %>
       - OPENVPN_PASSWORD=<%= $docker_password %>
-      - DNS_UPSTREAM_PLAIN_ADDRESSES=1.1.1.1:53
-      - FIREWALL_DEBUG=off
-      - DOT=off
-      - HTTPPROXY=off
+      - UPDATER_PERIOD=24h
     restart: unless-stopped

@@ -15,5 +15,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /srv/sonarr:/config
       - /srv/qbittorrent/data:/data
+      - /srv/jellyfin/data/tvshows:/tvshows
     ports:
       - 8989:8989
