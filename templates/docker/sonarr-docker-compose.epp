@@ -1,3 +1,7 @@
+networks:
+  servarr:
+    external: true
+    
 services:
     sonarr:
     image: lscr.io/linuxserver/sonarr:latest

@@ -1,3 +1,7 @@
+networks:
+  servarr:
+    external: true
+    
 services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
