@@ -6,6 +6,6 @@ services:
       - "8096:8096"
     volumes:
       - /srv/jellyfin/config:/config
-      - /srv/jellyfin/data:/media
+      - /srv/jellyfin/data/movies:/movies
       - /srv/qbittorrent/data/downloads:/downloads
     restart: unless-stopped
