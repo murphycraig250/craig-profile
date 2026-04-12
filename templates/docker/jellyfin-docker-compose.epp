@@ -7,4 +7,5 @@ services:
     volumes:
       - /srv/jellyfin/config:/config
       - /srv/jellyfin/data:/media
+      - /srv/qbittorrent/data/downloads:/downloads
     restart: unless-stopped
