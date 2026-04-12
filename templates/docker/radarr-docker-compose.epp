@@ -12,5 +12,5 @@ services:
     volumes:
       - /srv/radarr/config:/config
       - /srv/jellyfin/data/movies:/movies
-      - /srv/qbittorrent/data/downloads:/downloads
+      - /srv/qbittorrent/data:/data
     # No ports here! They go in Gluetun.
