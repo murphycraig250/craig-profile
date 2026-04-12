@@ -4,16 +4,16 @@ networks:
     
 services:
   sonarr:
-  image: lscr.io/linuxserver/sonarr:latest
-  container_name: sonarr
-  networks:
-    - servarr
-  restart: unless-stopped
-  environment:
-    - TZ=Europe/London
-  volumes:
-    - /etc/localtime:/etc/localtime:ro
-    - /srv/sonarr:/config
-    - /srv/qbittorrent/data:/data
-  ports:
-    - 8989:8989
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    networks:
+      - servarr
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /srv/sonarr:/config
+      - /srv/qbittorrent/data:/data
+    ports:
+      - 8989:8989
