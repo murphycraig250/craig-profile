@@ -35,14 +35,15 @@ define profile::linux_docker_app (
     ensure => directory,
     owner  => $deploy_user,
     group  => $deploy_group,
-    mode   => '0750',
+    mode   => '0770',
   }
 
   file { "${app_path}/data":
-    ensure => directory,
-    owner  => $deploy_user,
-    group  => $deploy_group,
-    mode   => '0770',
+    ensure  => directory,
+    owner   => $deploy_user,
+    group   => $deploy_group,
+    mode    => '0770',
+    recurse => true,
   }
 
   file { "${app_path}/config":
@@ -61,8 +62,8 @@ define profile::linux_docker_app (
     group   => $deploy_group,
     mode    => '0600',
     content => epp("profile/docker/${app_name}-docker-compose.epp", {
-        'docker_user'     => $docker_user =~ Sensitive ? { true => $docker_user.unwrap,     default => $docker_user },
-        'docker_password' => $docker_password =~ Sensitive ? { true => $docker_password.unwrap, default => $docker_password },
+        'docker_user'     => $docker_user =~ Sensitive ? { true => $docker_user.'unwrap',     default => $docker_user },
+        'docker_password' => $docker_password =~ Sensitive ? { true => $docker_password.'unwrap', default => $docker_password },
     }),
   }
 
