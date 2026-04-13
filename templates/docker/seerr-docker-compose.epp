@@ -6,13 +6,12 @@ services:
   seerr:
     image: ghcr.io/seerr-team/seerr:latest
     container_name: seerr
+    user: "1050:1050"
     networks:
       - servarr
     environment:
       - LOG_LEVEL=info
       - TZ=Europe/London
-      - PUID=1050
-      - PGID=1050
     ports:
       - 5055:5055
     volumes:
