@@ -1,0 +1,18 @@
+networks:
+  servarr:
+    external: true
+
+lidarr:
+    container_name: lidarr
+    image: lscr.io/linuxserver/lidarr:latest
+    networks:
+      - servarr
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /srv/lidarr/config:/config
+      - /srv/lidarr/data:/data
+    environment:
+      - TZ=Europe/London
+    ports:
+      - 8686:8686
