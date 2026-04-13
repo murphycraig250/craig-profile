@@ -7,4 +7,8 @@
 #   include profile::base_linux
 class profile::base_linux {
   notify { 'This is a Linux machine.': }
+
+  timezone { 'Europe/London':
+    ensure => present,
+  }
 }
