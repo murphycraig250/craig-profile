@@ -8,7 +8,8 @@
 class profile::base_linux {
   notify { 'This is a Linux machine.': }
 
-  timezone { 'Europe/London':
-    ensure => present,
+  exec { 'set-timezone':
+    command => '/usr/bin/timedatectl set-timezone Europe/London',
+    unless  => '/usr/bin/timedatectl status | grep "Time zone: Europe/London"',
   }
 }
