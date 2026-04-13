@@ -3,9 +3,9 @@ networks:
     external: true
 
 services:
-  overseerr:
-    image: sctx/overseerr:latest
-    container_name: overseerr
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
     networks:
       - servarr
     environment:
@@ -16,5 +16,5 @@ services:
     ports:
       - 5055:5055
     volumes:
-      - /srv/overseerr/config:/app/config
+      - /srv/jellyseerr/config:/app/config
     restart: unless-stopped
