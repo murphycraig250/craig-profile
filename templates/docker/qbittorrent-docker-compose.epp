@@ -9,8 +9,8 @@ services:
       - deunhealth.restart.on.unhealthy=true
     environment:
       - WEBUI_PORT=8080
-      - PUID=1000
-      - PGID=1000
+      - PUID=1050
+      - PGID=1050
       - TZ=Europe/London
     volumes:
       - /srv/qbittorrent/config:/config

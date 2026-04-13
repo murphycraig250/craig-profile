@@ -13,8 +13,8 @@ services:
     ports:
       - "7878:7878"
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=1050
+      - PGID=1050
       - TZ=Europe/London
     volumes:
       - /srv/radarr/config:/config

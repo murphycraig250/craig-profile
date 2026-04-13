@@ -4,9 +4,11 @@
 # manages the docker-compose configuration file, and handles container lifecycle.
 #
 # @param deploy_user The user that will own the application files
+# @param deploy_group The group that will own the application files
 # @param base_dir The base directory path where applications are deployed
 # @param port Optional port number for the application
-# @param extra_params Additional parameters for future extensibility
+# @param docker_user Optional Docker registry username
+# @param docker_password Optional Docker registry password
 #
 # @example
 #   profile::linux_docker_app { 'myapp':
@@ -15,7 +17,8 @@
 #     port = '8080',
 #   }
 define profile::linux_docker_app (
-  String $deploy_user = 'craig',
+  String $deploy_user = '1050',
+  String $deploy_group = '1050',
   String $base_dir = '/srv',
   Optional[String] $port = undef,
   Optional[Variant[String, Sensitive[String]]] $docker_user     = undef,
@@ -31,22 +34,22 @@ define profile::linux_docker_app (
   file { $app_path:
     ensure => directory,
     owner  => $deploy_user,
-    group  => 'docker',
-    mode   => '0755',
+    group  => $deploy_group,
+    mode   => '0750',
   }
 
   file { "${app_path}/data":
     ensure => directory,
     owner  => $deploy_user,
-    group  => 'docker',
-    mode   => '0775',
+    group  => $deploy_group,
+    mode   => '0770',
   }
 
   file { "${app_path}/config":
     ensure => directory,
     owner  => $deploy_user,
-    group  => 'docker',
-    mode   => '0775',
+    group  => $deploy_group,
+    mode   => '0770',
   }
 
   # ----------------------------
@@ -55,7 +58,7 @@ define profile::linux_docker_app (
   file { $compose_file:
     ensure  => file,
     owner   => $deploy_user,
-    group   => 'docker',
+    group   => $deploy_group,
     mode    => '0600',
     content => epp("profile/docker/${app_name}-docker-compose.epp", {
         'docker_user'     => $docker_user =~ Sensitive ? { true => $docker_user.unwrap,     default => $docker_user },

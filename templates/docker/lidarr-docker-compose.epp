@@ -13,7 +13,11 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /srv/lidarr/config:/config
       - /srv/lidarr/data:/data
+      - /srv/jellyfin/data/music:/music
+      - /srv/qbittorrent/data:/data
     environment:
       - TZ=Europe/London
+      - PUID=1050
+      - PGID=1050
     ports:
       - 8686:8686

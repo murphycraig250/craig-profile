@@ -11,8 +11,8 @@ services:
     environment:
       - LOG_LEVEL=info
       - TZ=Europe/London
-      - PUID=1000
-      - PGID=1000
+      - PUID=1050
+      - PGID=1050
     ports:
       - 5055:5055
     volumes:

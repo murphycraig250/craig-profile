@@ -7,6 +7,8 @@ services:
       - LOG_LEVEL=info
       - HEALTH_SERVER_ADDRESS=127.0.0.1:9999
       - TZ=Europe/London
+      - PUID=1050
+      - PGID=1050
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

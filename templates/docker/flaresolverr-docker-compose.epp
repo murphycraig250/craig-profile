@@ -13,6 +13,8 @@ services:
       - LOG_HTML=${LOG_HTML:-false}
       - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
       - TZ=Europe/London
+      - PUID=1050
+      - PGID=1050
     restart: unless-stopped
     ports:
       - 8191:8191

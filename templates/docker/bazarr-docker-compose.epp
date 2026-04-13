@@ -10,12 +10,15 @@ services:
     networks:
       - servarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=1050
+      - PGID=1050
       - TZ=Europe/London
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./bazarr:/config
       - /data:/data
+      - /srv/jellyfin/data/movies:/movies
+      - /srv/jellyfin/data/tvshows:/tvshows
+      - /srv/jellyfin/data/music:/music
     ports:
       - 6767:6767

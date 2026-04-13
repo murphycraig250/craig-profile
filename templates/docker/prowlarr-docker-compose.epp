@@ -10,6 +10,8 @@ services:
       - servarr
     environment:
       - TZ=Europe/London
+      - PUID=1050
+      - PGID=1050
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /srv/prowlarr:/config
