@@ -1,0 +1,20 @@
+networks:
+  servarr:
+    external: true
+
+services:
+  overseerr:
+    image: sctx/overseerr:latest
+    container_name: overseerr
+    networks:
+      - servarr
+    environment:
+      - LOG_LEVEL=info
+      - TZ=Europe/London
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - 5055:5055
+    volumes:
+      - /srv/overseerr/config:/app/config
+    restart: unless-stopped
