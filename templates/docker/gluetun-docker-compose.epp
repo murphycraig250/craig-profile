@@ -21,9 +21,11 @@ services:
       - VPN_SERVICE_PROVIDER=nordvpn
       - VPN_TYPE=openvpn
       - TZ=Europe/London
-      - SERVER_COUNTRIES=Netherlands,Germany,Belgium,Switzerland
-      - SERVER_CATEGORIES=Standard VPN servers
+      - SERVER_COUNTRIES=Germany
       - OPENVPN_USER=<%= $docker_user %>
       - OPENVPN_PASSWORD=<%= $docker_password %>
       - UPDATER_PERIOD=24h
+      - VPN_MTU=1400
+      - DNS_ADDRESS=1.1.1.1
+      - DNS_KEEP_NAMESERVER=on
     restart: unless-stopped
