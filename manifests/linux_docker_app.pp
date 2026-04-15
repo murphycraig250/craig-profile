@@ -98,7 +98,7 @@ define profile::linux_docker_app (
   # ----------------------------
   exec { "force_recreate_${app_name}_if_unhealthy":
     path    => ['/usr/bin', '/usr/local/bin'],
-    command => "docker-compose up -d --force-recreate ${app_name}",
+    command => "docker compose up -d --force-recreate ${app_name}",
     cwd     => $app_path,
     onlyif  => "docker inspect --format='{{.State.Health.Status}}' ${app_name} | grep unhealthy",
     require => Docker_compose[$app_name],
