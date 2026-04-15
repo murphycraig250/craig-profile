@@ -5,8 +5,6 @@ services:
     container_name: qbittorrent
     restart: unless-stopped
     network_mode: "container:gluetun"
-    labels:
-      - deunhealth.restart.on.unhealthy=true
     environment:
       - WEBUI_PORT=8080
       - PUID=1050
