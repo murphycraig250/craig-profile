@@ -9,6 +9,7 @@
 # @param port Optional port number for the application
 # @param docker_user Optional Docker registry username
 # @param docker_password Optional Docker registry password
+# @param up_args Optional arguments to pass to docker-compose up
 #
 # @example
 #   profile::linux_docker_app { 'myapp':
@@ -23,6 +24,7 @@ define profile::linux_docker_app (
   Optional[String] $port = undef,
   Optional[Variant[String, Sensitive[String]]] $docker_user     = undef,
   Optional[Variant[String, Sensitive[String]]] $docker_password = undef,
+  Variant[Array[String], Undef] $up_args = [],
 ) {
   $app_name     = $title
   $app_path     = "${base_dir}/${app_name}"
@@ -73,6 +75,7 @@ define profile::linux_docker_app (
   docker_compose { $app_name:
     ensure        => present,
     compose_files => [$compose_file],
+    up_args       => $up_args,
     subscribe     => File[$compose_file],
   }
 }
