@@ -1,0 +1,15 @@
+networks:
+  servarr:
+    external: true
+
+services:
+  autoheal:
+    image: willfarrell/autoheal:latest
+    container_name: autoheal
+    networks:
+      - servarr
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=autoheal
+    restart: unless-stopped

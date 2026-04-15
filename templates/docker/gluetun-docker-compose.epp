@@ -30,4 +30,6 @@ services:
       - DNS_KEEP_NAMESERVER=on
       - PUID=1050
       - PGID=1050
+    labels:
+      - "autoheal=true"
     restart: unless-stopped

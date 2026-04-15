@@ -15,9 +15,11 @@ services:
     volumes:
       - /srv/qbittorrent/config:/config
       - /srv/qbittorrent/data:/data
+    labels:
+      - "autoheal=true"
     healthcheck:
-      test: ["CMD", "curl", "-f", "https://www.google.com"]
-      interval: 60s
-      retries: 5
-      start_period: 60s
+      test: ["CMD", "curl", "-f", "https://1.1.1.1"]
+      interval: 45s
       timeout: 10s
+      retries: 3
+      start_period: 30s
