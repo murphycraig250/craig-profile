@@ -8,9 +8,9 @@ services:
     container_name: autokuma
     restart: always
     environment:
-      - KUMA_URL=http://uptime-kuma:3001
-      - KUMA_USERNAME=admin
-      - KUMA_PASSWORD=your_password
+      - AUTOKUMA__KUMA__URL=http://uptime-kuma:3001
+      - AUTOKUMA__KUMA__USER=admin
+      - AUTOKUMA__KUMA__PASSWORD=your_password
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
