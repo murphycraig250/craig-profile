@@ -11,6 +11,7 @@ class profile::linux_docker {
   }
   docker_network { 'servarr':
     ensure => present,
+    name   => 'servarr',
     driver => 'bridge',
   }
 }
