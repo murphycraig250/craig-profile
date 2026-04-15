@@ -20,4 +20,11 @@ services:
       - /srv/radarr/config:/config
       - /srv/jellyfin/data/movies:/movies
       - /srv/qbittorrent/data:/data
-    # No ports here! They go in Gluetun.
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7878"]
+      interval: 45s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    labels:
+      - "autoheal=true"

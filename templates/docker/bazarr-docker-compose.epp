@@ -12,7 +12,6 @@ services:
     environment:
       - PUID=1050
       - PGID=1050
-      - TZ=Europe/London
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./bazarr:/config
@@ -22,3 +21,11 @@ services:
       - /srv/jellyfin/data/music:/music
     ports:
       - 6767:6767
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6767"]
+      interval: 45s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    labels:
+      - "autoheal=true"

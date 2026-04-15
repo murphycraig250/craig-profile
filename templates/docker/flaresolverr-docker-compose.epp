@@ -18,3 +18,11 @@ services:
     restart: unless-stopped
     ports:
       - 8191:8191
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8191/health"]
+      interval: 45s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    labels:
+      - "autoheal=true"

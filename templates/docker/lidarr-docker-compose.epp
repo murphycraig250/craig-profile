@@ -21,3 +21,12 @@ services:
       - PGID=1050
     ports:
       - 8686:8686
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8686"]
+      interval: 45s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    labels:
+      - "autoheal=true"
+
