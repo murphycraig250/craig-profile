@@ -9,4 +9,8 @@ class profile::linux_docker {
   class { 'docker':
     dns => '8.8.8.8',
   }
+  docker_network { 'servarr':
+    ensure => present,
+    driver => 'bridge',
+  }
 }
