@@ -29,3 +29,7 @@ services:
       start_period: 30s
     labels:
       - "autoheal=true"
+      - "kuma.enable=true"
+      - "kuma.name=Bazarr"
+      - "kuma.type=http"
+      - "kuma.url=http://bazarr:6767"

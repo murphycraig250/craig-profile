@@ -1,0 +1,17 @@
+networks:
+  servarr:
+    external: true
+
+services:
+  autokuma:
+    image: ghcr.io/bigboot/autokuma:latest
+    container_name: autokuma
+    restart: always
+    environment:
+      - KUMA_URL=http://uptime-kuma:3001
+      - KUMA_USERNAME=admin
+      - KUMA_PASSWORD=your_password
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - servarr
