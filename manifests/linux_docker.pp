@@ -6,6 +6,7 @@
 # @example
 #   include profile::linux_docker
 class profile::linux_docker {
+  include 'docker'
   class { 'docker':
     dns => '8.8.8.8',
   }
