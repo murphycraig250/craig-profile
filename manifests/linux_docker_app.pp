@@ -24,7 +24,7 @@ define profile::linux_docker_app (
   Optional[String] $port = undef,
   Optional[Variant[String, Sensitive[String]]] $docker_user     = undef,
   Optional[Variant[String, Sensitive[String]]] $docker_password = undef,
-  Optional[String] $up_args = '',
+  Optional[String] $up_args = undef,
   Optional[String] $depends_on = '',
 ) {
   $app_name     = $title
