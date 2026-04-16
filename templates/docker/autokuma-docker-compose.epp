@@ -11,6 +11,7 @@ services:
       - AUTOKUMA__KUMA__URL=http://uptime-kuma:3001/
       - AUTOKUMA__KUMA__USERNAME=craig
       - AUTOKUMA__KUMA__PASSWORD=password123
+      - AUTOKUMA__DOCKER__HOSTS=unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:

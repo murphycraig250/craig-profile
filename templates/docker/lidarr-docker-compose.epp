@@ -29,4 +29,6 @@ services:
       start_period: 30s
     labels:
       - "autoheal=true"
+      - "kuma.lidarr.http.name=Lidarr"
+      - "kuma.lidarr.http.url=http://lidarr:8686"
 

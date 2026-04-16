@@ -20,3 +20,6 @@ services:
       - /srv/jellyfin/data/tvshows:/tvshows
       - /srv/jellyfin/data/music:/music
     restart: unless-stopped
+    labels:
+      - "kuma.jellyfin.http.name=Jellyfin"
+      - "kuma.jellyfin.http.url=http://jellyfin:8096"

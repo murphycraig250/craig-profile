@@ -26,3 +26,5 @@ services:
       start_period: 30s
     labels:
       - "autoheal=true"
+      - "kuma.flaresolverr.http.name=Flaresolverr"
+      - "kuma.flaresolverr.http.url=http://flaresolverr:8191/health"

@@ -25,3 +25,5 @@ services:
       start_period: 30s
     labels:
       - "autoheal=true"
+      - "kuma.seerr.http.name=Seerr"
+      - "kuma.seerr.http.url=http://seerr:5055"

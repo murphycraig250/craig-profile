@@ -28,3 +28,5 @@ services:
       start_period: 30s
     labels:
       - "autoheal=true"
+      - "kuma.radarr.http.name=Radarr"
+      - "kuma.radarr.http.url=http://radarr:7878"
