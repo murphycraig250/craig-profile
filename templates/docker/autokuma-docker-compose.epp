@@ -6,6 +6,7 @@ services:
   autokuma:
     image: ghcr.io/bigboot/autokuma:latest
     container_name: autokuma
+    user: "0:988"
     restart: always
     environment:
       - AUTOKUMA__KUMA__URL=http://uptime-kuma:3001/
