@@ -31,4 +31,4 @@ services:
     labels:
       - "autoheal=true"
       - "kuma.bazarr.http.name=Bazarr"
-      - "kuma.bazarr.http.url=https://bazarr:6767"
+      - "kuma.bazarr.http.url=http://bazarr:6767"
