@@ -31,6 +31,5 @@ services:
     labels:
       - "autoheal=true"
       - "kuma.enable=true"
-      - "kuma.name=Bazarr"
-      - "kuma.type=http"
-      - "kuma.url=http://localhost:6767"
+      - "kuma.http.name=Bazarr"
+      - "kuma.http.url=http://bazarr:6767"
