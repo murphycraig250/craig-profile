@@ -16,9 +16,9 @@ services:
     labels:
       - "autoheal=true"
       - "kuma.qbittorrent.http.name=qBittorrent WebUI"
-      - "kuma.qbittorrent.http.url=http://qbittorrent:8080"
+      - "kuma.qbittorrent.http.url=http://gluetun:8080"
       - "kuma.qbittorrent.docker.name=qBittorrent Container"
-      - "kuma.qbittorrent.docker.docker_container=qbittorrent"
+      - "kuma.qbittorrent.docker.container=qbittorrent"
     healthcheck:
       test: ["CMD", "curl", "-f", "https://1.1.1.1"]
       interval: 45s
