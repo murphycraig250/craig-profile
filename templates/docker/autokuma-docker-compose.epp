@@ -8,9 +8,10 @@ services:
     container_name: autokuma
     restart: always
     environment:
-      - AUTOKUMA__KUMA__URL=http://172.22.0.4:3001
-      - AUTOKUMA__KUMA__USERNAME=craig
-      - AUTOKUMA__KUMA__PASSWORD=password123
+      - AUTOKUMA__KUMA__URL=http://localhost:3001
+      - AUTOKUMA__KUMA__USERNAME='craig'
+      - AUTOKUMA__KUMA__PASSWORD='password123'
+      - RUST_LOG=autokuma=trace,kuma_client=trace
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
