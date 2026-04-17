@@ -10,6 +10,10 @@ services:
       - servarr
     ports:
       - "8096:8096"
+    devices:
+      - /dev/dri:/dev/dri
+    group_add:
+      - "107" 
     environment:
       - TZ=Europe/London
       - PUID=1050
