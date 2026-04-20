@@ -1,13 +1,8 @@
-networks:
-  servarr:
-    external: true
-    
 services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
-    networks:
-      - servarr
+    network_mode: "container:gluetun"
     environment:
       - TZ=Europe/London
       - PUID=1050
@@ -16,8 +11,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /srv/prowlarr:/config
     restart: unless-stopped
-    ports:
-      - 9696:9696
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9696"]
       interval: 45s
