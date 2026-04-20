@@ -4,7 +4,7 @@ services:
     container_name: autokuma
     restart: always
     environment:
-      - AUTOKUMA__KUMA__URL=http://uptime-kuma:3001/
+      - AUTOKUMA__KUMA__URL=http://10.0.0.104:3001/
       - AUTOKUMA__KUMA__USERNAME=craig
       - AUTOKUMA__KUMA__PASSWORD=password123
       - AUTOKUMA__DOCKER__HOSTS=unix:///var/run/docker.sock
