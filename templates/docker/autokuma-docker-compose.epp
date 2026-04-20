@@ -1,7 +1,3 @@
-networks:
-  servarr:
-    external: true
-
 services:
   autokuma:
     image: ghcr.io/bigboot/autokuma:latest
@@ -14,5 +10,3 @@ services:
       - AUTOKUMA__DOCKER__HOSTS=unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - servarr
