@@ -11,8 +11,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /srv/prowlarr:/config
     restart: unless-stopped
-    ports:
-      - 9696:9696
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9696"]
       interval: 45s
