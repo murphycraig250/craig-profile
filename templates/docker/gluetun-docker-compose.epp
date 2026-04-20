@@ -15,7 +15,7 @@ services:
       - 8080:8080 # qbittorrent web interface
       - 6881:6881 # qbittorrent torrent port
       - 6881:6881/udp # qbittorrent torrent port
-      - 9696:9696 # prowlarr web interface
+      - 8191:8191 # flaresolverr web interface
     volumes:
       - /srv/gluetun:/gluetun
     environment:
