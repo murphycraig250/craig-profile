@@ -18,8 +18,6 @@ services:
     volumes:
       - /srv/gluetun:/gluetun
     environment:
-      - FIREWALL_OUTBOUND_SUBNETS=192.168.1.0/24
-      - NETWORK=192.168.1.0/24
       - VPN_SERVICE_PROVIDER=nordvpn
       - VPN_TYPE=openvpn
       - TZ=Europe/London
