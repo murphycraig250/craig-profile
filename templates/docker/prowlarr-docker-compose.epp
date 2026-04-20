@@ -1,3 +1,7 @@
+networks:
+  servarr:
+    external: true
+    
 services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
@@ -11,8 +15,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /srv/prowlarr:/config
     restart: unless-stopped
+    ports:
+      - 9696:9696
     healthcheck:
-      test: ["CMD", "curl", "-f", "https://1.1.1.1"]
+      test: ["CMD", "curl", "-f", "http://localhost:9696"]
       interval: 45s
       timeout: 10s
       retries: 3
