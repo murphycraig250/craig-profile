@@ -6,7 +6,8 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
-    network_mode: "container:gluetun"
+    networks:
+      - servarr
     environment:
       - TZ=Europe/London
       - PUID=1050
