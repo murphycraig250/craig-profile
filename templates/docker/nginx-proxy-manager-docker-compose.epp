@@ -8,6 +8,8 @@ services:
       - '80:80'   # Public HTTP
       - '443:443' # Public HTTPS
       - '81:81'   # Admin UI
+      - '5055:5055'
+      - '8096:8096'
     environment:
       # Optional: Change these if you want to use an external DB later, 
       # but SQLite (default) is fine for a small lab.
