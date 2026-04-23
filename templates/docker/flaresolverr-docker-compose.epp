@@ -11,8 +11,6 @@ services:
       - PUID=1050
       - PGID=1050
     restart: unless-stopped
-    ports:
-      - 8191:8191
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8191/health"]
       interval: 45s
