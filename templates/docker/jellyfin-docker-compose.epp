@@ -23,7 +23,7 @@ services:
       - /srv/jellyfin/data/movies:/movies
       - /srv/jellyfin/data/tvshows:/tvshows
       - /srv/jellyfin/data/music:/music
-      - /data/media:/data/media
+      - /data:/data
     restart: unless-stopped
     labels:
       - "kuma.jellyfin.http.name=Jellyfin"

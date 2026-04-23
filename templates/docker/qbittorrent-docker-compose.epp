@@ -12,7 +12,7 @@ services:
       - TZ=Europe/London
     volumes:
       - /srv/qbittorrent/config:/config
-      - /data/torrents:/data/torrents
+      - /data:/data
     labels:
       - "autoheal=true"
       - "kuma.qbittorrent.http.name=qBittorrent"
