@@ -19,7 +19,7 @@ services:
     volumes:
       - /srv/radarr/config:/config
       - /srv/jellyfin/data/movies:/movies
-      - /srv/qbittorrent/data:/data
+      - /data:/data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7878"]
       interval: 45s

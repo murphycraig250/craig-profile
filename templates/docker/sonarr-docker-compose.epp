@@ -16,8 +16,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /srv/sonarr:/config
-      - /srv/qbittorrent/data:/data
       - /srv/jellyfin/data/tvshows:/tvshows
+      - /data:/data
     ports:
       - 8989:8989
     healthcheck:
