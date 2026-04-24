@@ -10,6 +10,9 @@ services:
       - '81:81'   # Admin UI
       - '5055:5055'
       - '8096:8096'
+      - '7888:7888'
+      - '8989:8989'
+      - '3001:3001'
     environment:
       # Optional: Change these if you want to use an external DB later, 
       # but SQLite (default) is fine for a small lab.
