@@ -13,6 +13,7 @@ services:
       - '7878:7878'
       - '8989:8989'
       - '3001:3001'
+      - '8080:8080'
     environment:
       # Optional: Change these if you want to use an external DB later, 
       # but SQLite (default) is fine for a small lab.
