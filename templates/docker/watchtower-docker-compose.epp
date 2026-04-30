@@ -6,8 +6,7 @@ services:
     environment:
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_SCHEDULE=0 0 4 * * *
-      - WATCHTOWER_NOTIFICATIONS=shoutrrr
-      - WATCHTOWER_NOTIFICATIONS_REPORT=true
-      - WATCHTOWER_NOTIFICATIONS_URL=discord://h-gnGjZUIeow5HuAGnUiGz65sDucjsE0BS4aEO-u6qHYw4l73hCcqssPREnbb830UiQe@1499458688719519986
+      - WATCHTOWER_NOTIFICATION_REPORT=true
+      - WATCHTOWER_NOTIFICATION_URL=discord://h-gnGjZUIeow5HuAGnUiGz65sDucjsE0BS4aEO-u6qHYw4l73hCcqssPREnbb830UiQe@1499458688719519986
       - WATCHTOWER_NOTIFICATION_TEMPLATE={{len .Scanned}} Scanned, {{len .Updated}} Updated, {{len .Failed}} Failed
     restart: unless-stopped
