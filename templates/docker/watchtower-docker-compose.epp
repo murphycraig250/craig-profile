@@ -1,3 +1,4 @@
+``` yaml
 services:
   watchtower:
     image: containrrr/watchtower
