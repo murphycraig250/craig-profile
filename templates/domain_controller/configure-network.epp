@@ -6,13 +6,62 @@ $PrefixLength = <%= $prefix_length %>
 $Gateway = '<%= $gateway %>'
 $DnsServer = '<%= $dns_server %>'
 
-Write-Output "Interface: $InterfaceAlias"
-Write-Output "Desired IP: $IPAddress/$PrefixLength"
-Write-Output "Desired Gateway: $Gateway"
-Write-Output "Desired DNS: $DnsServer"
-
 $current = Get-NetIPConfiguration -InterfaceAlias $InterfaceAlias
 
-Write-Output "Current IPv4: $($current.IPv4Address.IPAddress)"
-Write-Output "Current Gateway: $($current.IPv4DefaultGateway.NextHop)"
-Write-Output "Current DNS: $($current.DNSServer.ServerAddresses -join ', ')"
+$currentIp = $current.IPv4Address.IPAddress
+$currentGateway = $current.IPv4DefaultGateway.NextHop
+
+$currentDns = (Get-DnsClientServerAddress `
+    -InterfaceAlias $InterfaceAlias `
+    -AddressFamily IPv4).ServerAddresses
+
+Write-Output "Current IPv4: $currentIp"
+Write-Output "Current Gateway: $currentGateway"
+Write-Output "Current DNS: $($currentDns -join ', ')"
+
+if ($currentIp -ne $IPAddress) {
+    Write-Output "Configuring IPv4 address $IPAddress/$PrefixLength"
+
+    # Remove existing IPv4 addresses before applying the desired address.
+    Get-NetIPAddress `
+        -InterfaceAlias $InterfaceAlias `
+        -AddressFamily IPv4 `
+        -ErrorAction SilentlyContinue |
+        Remove-NetIPAddress -Confirm:$false
+
+    New-NetIPAddress `
+        -InterfaceAlias $InterfaceAlias `
+        -IPAddress $IPAddress `
+        -PrefixLength $PrefixLength `
+        -DefaultGateway $Gateway
+}
+else {
+    Write-Output "IPv4 address already correct."
+}
+
+if ($currentIp -eq $IPAddress -and $currentGateway -ne $Gateway) {
+    Write-Output "Configuring default gateway."
+
+    Remove-NetRoute `
+        -InterfaceAlias $InterfaceAlias `
+        -AddressFamily IPv4 `
+        -DestinationPrefix '0.0.0.0/0' `
+        -Confirm:$false `
+        -ErrorAction SilentlyContinue
+
+    New-NetRoute `
+        -InterfaceAlias $InterfaceAlias `
+        -DestinationPrefix '0.0.0.0/0' `
+        -NextHop $Gateway
+}
+
+if ($currentDns -notcontains $DnsServer) {
+    Write-Output "Configuring DNS server $DnsServer"
+
+    Set-DnsClientServerAddress `
+        -InterfaceAlias $InterfaceAlias `
+        -ServerAddresses $DnsServer
+}
+else {
+    Write-Output "DNS server already configured."
+}
