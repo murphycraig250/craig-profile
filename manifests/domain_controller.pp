@@ -4,7 +4,7 @@ class profile::domain_controller (
 ) {
   file { 'C:\ProgramData\PuppetLabs\promote-dc.ps1':
     ensure  => file,
-    content => epp('profile/domain_controller/promote-dc.ps1.epp', {
+    content => epp('profile/domain_controller/promote-dc.epp', {
         'domain_name'         => $domain_name,
         'domain_netbios_name' => $domain_netbios_name,
     }),
