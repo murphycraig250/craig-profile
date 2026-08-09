@@ -1,6 +1,8 @@
 # @summary Configures features on a Windows Domain Controller
 #
-# This class installs necessary features on a Windows Domain Controller, such as the Remote Server Administration Tools (RSAT) for Active Directory.
+# This class installs necessary features on a Windows Domain
+# Controller, such as the Remote Server Administration Tools
+# (RSAT) for Active Directory.
 #
 # @example
 #   include profile::windows_dc_features
