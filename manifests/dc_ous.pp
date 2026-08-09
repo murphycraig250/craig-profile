@@ -11,7 +11,7 @@ class profile::dc_ous (
     exec { "create-ou-${ou_name}":
       command  => "New-ADOrganizationalUnit -Name '${ou_name}' -Path '${ou_path}' -ProtectedFromAccidentalDeletion \$false",
       provider => powershell,
-      unless   => "if (Get-ADOrganizationalUnit -LDAPFilter '(ou=${ou_name})' -SearchBase '${ou_path}' -ErrorAction SilentlyContinue) { exit 0 } else { exit 1 }",
+      unless   => "if (Get-ADOrganizationalUnit -Identity 'OU=${ou_name},${ou_path}' -ErrorAction SilentlyContinue) { exit 0 } else { exit 1 }",
     }
   }
 }
