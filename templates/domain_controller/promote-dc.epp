@@ -10,10 +10,10 @@ Write-Output "PowerShell version: $($PSVersionTable.PSVersion)"
 
 # Check whether this machine is already a domain controller.
 
-$domain = Get-ADDomain -ErrorAction SilentlyContinue
+$computerSystem = Get-CimInstance Win32_ComputerSystem
 
-if ($null -ne $domain) {
-    Write-Output "Machine is already a domain controller for $($domain.DNSRoot)."
+if ($computerSystem.DomainRole -in 4, 5) {
+    Write-Output "Machine is already a domain controller."
     exit 0
 }
 
