@@ -2,12 +2,30 @@ $ErrorActionPreference = 'Stop'
 
 $DomainName = '<%= $domain_name %>'
 $DomainNetbiosName = '<%= $domain_netbios_name %>'
+$SafeModePassword = '<%= $safe_mode_password %>'
 
-$SafeModeAdministratorPassword = ConvertTo-SecureString 'PuppetLab123!' -AsPlainText -Force
+Write-Output "Domain name: $DomainName"
+Write-Output "NetBIOS name: $DomainNetbiosName"
+Write-Output "PowerShell version: $($PSVersionTable.PSVersion)"
+
+# Check whether this machine is already a domain controller.
+$domain = Get-ADDomain -ErrorAction SilentlyContinue
+
+if ($null -ne $domain) {
+    Write-Output "Machine is already a domain controller for $($domain.DNSRoot)."
+    exit 0
+}
+
+Write-Output "Machine is not yet a domain controller. Starting promotion."
+
+$SecurePassword = ConvertTo-SecureString `
+    $SafeModePassword `
+    -AsPlainText `
+    -Force
 
 Install-ADDSForest `
     -DomainName $DomainName `
     -DomainNetbiosName $DomainNetbiosName `
-    -InstallDNS `
-    -SafeModeAdministratorPassword $SafeModeAdministratorPassword `
+    -SafeModeAdministratorPassword $SecurePassword `
+    -InstallDns `
     -Force
