@@ -5,9 +5,9 @@
 # (RSAT) for Active Directory.
 #
 # @example
-#   include profile::windows_dc_features
+#   include profile::dc_features
 #
-class profile::windows_dc_features {
+class profile::dc_features {
   $iis_features = ['RSAT-AD-PowerShell', 'RSAT-Role-Tools', 'AD-Domain-Services']
 
   windowsfeature { $iis_features:

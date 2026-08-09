@@ -1,4 +1,4 @@
-class profile::domain_controller (
+class profile::dc_network (
   String $domain_name = 'localdomain.test',
   String $domain_netbios_name = 'LOCALDOMAIN',
 
