@@ -3,6 +3,11 @@ $ErrorActionPreference = 'Stop'
 $DomainName = '<%= $domain_name %>'
 $DomainNetbiosName = '<%= $domain_netbios_name %>'
 
-Write-Output "Domain name: $DomainName"
-Write-Output "NetBIOS name: $DomainNetbiosName"
-Write-Output "PowerShell version: $($PSVersionTable.PSVersion)"
+$SafeModeAdministratorPassword = ConvertTo-SecureString 'PuppetLab123!' -AsPlainText -Force
+
+Install-ADDSForest `
+    -DomainName $DomainName `
+    -DomainNetbiosName $DomainNetbiosName `
+    -InstallDNS `
+    -SafeModeAdministratorPassword $SafeModeAdministratorPassword `
+    -Forces
