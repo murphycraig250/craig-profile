@@ -1,3 +1,7 @@
+<%- | String $domain_name,
+      String $domain_netbios_name,
+      String $safe_mode_password | -%>
+
 $ErrorActionPreference = 'Stop'
 
 $DomainName = '<%= $domain_name %>'
