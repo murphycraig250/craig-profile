@@ -1,0 +1,8 @@
+$ErrorActionPreference = 'Stop'
+
+$DomainName = '<%= $domain_name %>'
+$DomainNetbiosName = '<%= $domain_netbios_name %>'
+
+Write-Output "Domain name: $DomainName"
+Write-Output "NetBIOS name: $DomainNetbiosName"
+Write-Output "PowerShell version: $($PSVersionTable.PSVersion)"
