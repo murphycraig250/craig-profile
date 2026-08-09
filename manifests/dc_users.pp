@@ -1,6 +1,6 @@
 class profile::dc_users (
   Hash $users = {},
-  String $default_path = 'OU=lab_users,DC=localdomain,DC=test',
+  String $default_path = 'OU=lab users,DC=localdomain,DC=test',
   Boolean $default_enabled = true,
 ) {
   $users.each |String $username, Hash $user_data| {
