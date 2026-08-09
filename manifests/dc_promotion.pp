@@ -3,13 +3,12 @@ class profile::dc_promotion (
   String $domain_netbios_name = 'LOCALDOMAIN',
   String $safe_mode_password = 'YourTemporaryPassword123!',
 ) {
-
   file { 'C:\ProgramData\PuppetLabs\promote-dc.ps1':
     ensure  => file,
-    content => epp('profile/domain_controller/promote-dc.ps1.epp', {
-      'domain_name'        => $domain_name,
-      'domain_netbios_name' => $domain_netbios_name,
-      'safe_mode_password' => $safe_mode_password,
+    content => epp('profile/domain_controller/promote-dc.epp', {
+        'domain_name'         => $domain_name,
+        'domain_netbios_name' => $domain_netbios_name,
+        'safe_mode_password'  => $safe_mode_password,
     }),
   }
 }
