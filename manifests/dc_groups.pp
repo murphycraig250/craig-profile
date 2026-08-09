@@ -23,7 +23,7 @@ class profile::dc_groups (
     exec { "create-ad-group-${group_name}":
       command  => "New-ADGroup -Name '${group_name}' -SamAccountName '${group_name}' -GroupScope '${group_scope}' -GroupCategory '${group_category}' -Path '${group_path}'",
       provider => powershell,
-      unless   => "if (Get-ADGroup -Identity '${group_name}' -ErrorAction SilentlyContinue) { exit 0 } else { exit 1 }",
+      unless   => "try { Get-ADGroup -Identity '${group_name}' -ErrorAction Stop; exit 0 } catch { exit 1 }",
     }
   }
 }
