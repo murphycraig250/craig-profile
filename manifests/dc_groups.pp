@@ -1,6 +1,6 @@
 class profile::dc_groups (
   Hash $groups = {},
-  String $default_path = 'OU=Groups,DC=localdomain,DC=test',
+  String $default_path = 'OU=Lab Groups,DC=localdomain,DC=test',
   String $default_scope = 'Global',
   String $default_category = 'Security',
 ) {
