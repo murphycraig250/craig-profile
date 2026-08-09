@@ -10,4 +10,4 @@ Install-ADDSForest `
     -DomainNetbiosName $DomainNetbiosName `
     -InstallDNS `
     -SafeModeAdministratorPassword $SafeModeAdministratorPassword `
-    -Forces
+    -Force
