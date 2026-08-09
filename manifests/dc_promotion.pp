@@ -13,7 +13,7 @@ class profile::dc_promotion (
   }
 
   exec { 'promote-domain-controller':
-    command     => 'C:\Program Files\PowerShell\7\pwsh.exe -NoProfile -File C:\ProgramData\PuppetLabs\promote-dc.ps1',
+    command     => '"C:\Program Files\PowerShell\7\pwsh.exe" -NoProfile -File "C:\ProgramData\PuppetLabs\promote-dc.ps1"',
     refreshonly => true,
     subscribe   => File['C:\ProgramData\PuppetLabs\promote-dc.ps1'],
   }
