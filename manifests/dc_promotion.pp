@@ -11,4 +11,10 @@ class profile::dc_promotion (
         'safe_mode_password'  => $safe_mode_password,
     }),
   }
+
+  exec { 'promote-domain-controller':
+    command     => 'C:\Program Files\PowerShell\7\pwsh.exe -NoProfile -File C:\ProgramData\PuppetLabs\promote-dc.ps1',
+    refreshonly => true,
+    subscribe   => File['C:\ProgramData\PuppetLabs\promote-dc.ps1'],
+  }
 }

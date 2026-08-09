@@ -9,6 +9,7 @@ Write-Output "NetBIOS name: $DomainNetbiosName"
 Write-Output "PowerShell version: $($PSVersionTable.PSVersion)"
 
 # Check whether this machine is already a domain controller.
+
 $domain = Get-ADDomain -ErrorAction SilentlyContinue
 
 if ($null -ne $domain) {
