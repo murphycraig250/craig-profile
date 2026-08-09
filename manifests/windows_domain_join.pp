@@ -1,52 +1,13 @@
-# @summary Configures a Windows Domain Join
-#
-# This class automates the setup of a Windows Domain Join.
-#
-# @example
-#   include profile::windows_domain_join
-#
-class profile::windows_domain_join { # Inside profile::windows_domain_join
-  if $facts['networking']['domain'] != 'localdomain.test' {
-    $dc_query = puppetdb_query("resources { type = 'Host' and title = 'dc-dns' }")
+exec { 'join-domain':
+  command  => "${cred} = New-Object System.Management.Automation.PSCredential(''DOMAIN\vagrant'', (ConvertTo-SecureString ''vagrant'' -AsPlainText -Force)); Add-Computer -DomainName ''localdomain.test'' -OUPath ''OU=Lab Computers,DC=localdomain,DC=test'' -Credential ${cred} -Force'",
+  provider => powershell,
+  unless   => 'try { if ((Get-CimInstance Win32_ComputerSystem).PartOfDomain) { exit 0 } catch { exit 1 }',
+  timeout  => 300,
+  notify   => Exec['reboot-after-domain-join'],
+}
 
-    if ! empty($dc_query) {
-      $dc_ip = $dc_query[0]['parameters']['ip']
-
-      # 1. Force the DNS change
-      exec { 'set_dns_to_dc':
-        command  => "Set-DnsClientServerAddress -InterfaceAlias 'Ethernet' -ServerAddresses '${dc_ip}'",
-        unless   => "if ((Get-DnsClientServerAddress -InterfaceAlias 'Ethernet').ServerAddresses -contains '${dc_ip}') { exit 0 } else { exit 1 }",
-        provider => 'powershell',
-        before   => Dsc_computer['join_to_domain'],
-      }
-
-      # 2. Perform the Domain Join
-      dsc_computer { 'join_to_domain':
-        dsc_domainname => 'localdomain.test',
-        dsc_credential => {
-          'user'     => 'LOCALDOMAIN\Administrator',
-          'password' => Sensitive('Vagrant!23'),
-        },
-        dsc_name       => $facts['networking']['hostname'],
-        notify         => Reboot['after_join'],
-      }
-      exec { 'trigger_reboot_on_success':
-        provider  => 'powershell',
-        command   => 'exit 0',
-        onlyif    => 'if ((Get-WmiObject Win32_ComputerSystem).PartOfDomain) { exit 0 } else { exit 1 }',
-        subscribe => Dsc_computer['join_to_domain'],
-        notify    => Reboot['after_join'],
-      }
-
-      reboot { 'after_join':
-        apply => 'finished',
-        when  => 'refreshed',
-      }
-    }
-    else {
-      notify { 'Waiting for DC':
-        message => 'DC IP not found in PuppetDB yet. Run Puppet on the DC first!',
-      }
-    }
-  }
+exec { 'reboot-after-domain-join':
+  command     => 'shutdown.exe /r /t 5 /c "Rebooting after domain join"',
+  refreshonly => true,
+  path        => ['C:/Windows/System32'],
 }
