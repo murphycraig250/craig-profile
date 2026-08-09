@@ -1,0 +1,18 @@
+$ErrorActionPreference = 'Stop'
+
+$InterfaceAlias = '<%= $interface_alias %>'
+$IPAddress = '<%= $ip_address %>'
+$PrefixLength = <%= $prefix_length %>
+$Gateway = '<%= $gateway %>'
+$DnsServer = '<%= $dns_server %>'
+
+Write-Output "Interface: $InterfaceAlias"
+Write-Output "Desired IP: $IPAddress/$PrefixLength"
+Write-Output "Desired Gateway: $Gateway"
+Write-Output "Desired DNS: $DnsServer"
+
+$current = Get-NetIPConfiguration -InterfaceAlias $InterfaceAlias
+
+Write-Output "Current IPv4: $($current.IPv4Address.IPAddress)"
+Write-Output "Current Gateway: $($current.IPv4DefaultGateway.NextHop)"
+Write-Output "Current DNS: $($current.DNSServer.ServerAddresses -join ', ')"
