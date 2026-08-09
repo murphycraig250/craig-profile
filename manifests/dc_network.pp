@@ -1,7 +1,4 @@
 class profile::dc_network (
-  String $domain_name = 'localdomain.test',
-  String $domain_netbios_name = 'LOCALDOMAIN',
-
   String $interface_alias = 'Ethernet',
   String $ip_address = '192.168.1.60',
   Integer $prefix_length = 24,
@@ -9,14 +6,6 @@ class profile::dc_network (
   String $dns_server = '192.168.1.60',
 
 ) {
-  file { 'C:\ProgramData\PuppetLabs\promote-dc.ps1':
-    ensure  => file,
-    content => epp('profile/domain_controller/promote-dc.epp', {
-        'domain_name'         => $domain_name,
-        'domain_netbios_name' => $domain_netbios_name,
-    }),
-  }
-
   file { 'C:\ProgramData\PuppetLabs\configure-network.ps1':
     ensure  => file,
     content => epp('profile/domain_controller/configure-network.epp', {
