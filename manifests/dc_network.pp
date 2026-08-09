@@ -18,7 +18,7 @@ class profile::dc_network (
   }
 
   exec { 'configure-domain-controller-network':
-    command     => 'C:\Program Files\PowerShell\7\pwsh.exe -NoProfile -File C:\ProgramData\PuppetLabs\configure-network.ps1',
+    command     => '"C:\Program Files\PowerShell\7\pwsh.exe" -NoProfile -File "C:\ProgramData\PuppetLabs\configure-network.ps1"',
     refreshonly => true,
     subscribe   => File['C:\ProgramData\PuppetLabs\configure-network.ps1'],
   }
