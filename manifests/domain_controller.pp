@@ -19,7 +19,7 @@ class profile::domain_controller (
 
   file { 'C:\ProgramData\PuppetLabs\configure-network.ps1':
     ensure  => file,
-    content => epp('profile/domain_controller/configure-network.ps1.epp', {
+    content => epp('profile/domain_controller/configure-network.epp', {
         'interface_alias' => $interface_alias,
         'ip_address'      => $ip_address,
         'prefix_length'   => $prefix_length,
