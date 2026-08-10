@@ -15,7 +15,7 @@ jobs:
 
       - name: Fix Git Security
         # This prevents "dubious ownership" errors in Docker
-        run: git config --global --add safe.directory /__w/craig-role/craig-role
+        run: git config --global --add safe.directory '*'
 
       - name: Run PDK Validate
         run: pdk validate puppet ruby --parallel

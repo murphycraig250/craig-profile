@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'linux_helper'
 
 describe 'profile::base_linux' do
-  on_supported_os.each do |os, os_facts|
+  supported_linux.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
 
