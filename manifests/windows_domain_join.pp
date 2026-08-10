@@ -1,8 +1,8 @@
 class profile::windows_domain_join {
   exec { 'join-domain':
-    command  => "${cred} = New-Object System.Management.Automation.PSCredential(''DOMAIN\vagrant'', (ConvertTo-SecureString ''vagrant'' -AsPlainText -Force)); Add-Computer -DomainName ''localdomain.test'' -OUPath ''OU=Lab Computers,DC=localdomain,DC=test'' -Credential ${cred} -Force'",
+    command  => '$cred = New-Object System.Management.Automation.PSCredential("DOMAIN\vagrant", (ConvertTo-SecureString "vagrant" -AsPlainText -Force)); Add-Computer -DomainName "localdomain.test" -OUPath "OU=Lab Computers,DC=localdomain,DC=test" -Credential $cred -Force',
     provider => powershell,
-    unless   => 'try { if ((Get-CimInstance Win32_ComputerSystem).PartOfDomain) { exit 0 } catch { exit 1 }',
+    unless   => 'if ((Get-CimInstance Win32_ComputerSystem).PartOfDomain) { exit 0 } else { exit 1 }',
     timeout  => 300,
     notify   => Exec['reboot-after-domain-join'],
   }
