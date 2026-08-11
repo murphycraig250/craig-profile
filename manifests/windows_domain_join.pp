@@ -10,9 +10,8 @@ class profile::windows_domain_join {
   exec { 'configure-domain-dns':
     command  => "Get-NetAdapter | Where-Object { \$_.Status -eq 'Up' } | ForEach-Object { Set-DnsClientServerAddress -InterfaceIndex \$_.ifIndex -ServerAddresses '${domain_dns}' }",
     provider => powershell,
-    unless   => "Get-DnsClientServerAddress -AddressFamily IPv4 | Where-Object { \$_.ServerAddresses -contains '${domain_dns}' }",
+    unless   => "Get-NetAdapter | Where-Object { \$_.Status -eq 'Up' } | ForEach-Object { (Get-DnsClientServerAddress -InterfaceIndex \$_.ifIndex -AddressFamily IPv4).ServerAddresses } | Where-Object { \$_ -ne '${domain_dns}' } | Select-Object -First 1",
   }
-
   # --------------------------------------------------------------------------
   # Verify that AD DNS is actually responding
   # --------------------------------------------------------------------------
