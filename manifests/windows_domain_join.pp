@@ -27,7 +27,7 @@ class profile::windows_domain_join {
   # --------------------------------------------------------------------------
 
   exec { 'join-domain':
-    command  => "\$cred = New-Object System.Management.Automation.PSCredential(\"DOMAIN\\vagrant\", (ConvertTo-SecureString \"vagrant\" -AsPlainText -Force)); Add-Computer -DomainName \"${domain}\" -OUPath \"${domain_ou}\" -Credential \$cred -Force -ErrorAction Stop",
+    command  => "\$cred = New-Object System.Management.Automation.PSCredential(\"localdomain.test\\vagrant\", (ConvertTo-SecureString \"vagrant\" -AsPlainText -Force)); Add-Computer -DomainName \"${domain}\" -OUPath \"${domain_ou}\" -Credential \$cred -Force -ErrorAction Stop",
     provider => powershell,
     unless   => 'if ((Get-CimInstance Win32_ComputerSystem).PartOfDomain) { exit 0 } else { exit 1 }',
     require  => Exec['verify-domain-dns'],
