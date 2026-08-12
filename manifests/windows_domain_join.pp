@@ -42,7 +42,7 @@ class profile::windows_domain_join {
   # --------------------------------------------------------------------------
 
   exec { 'verify-domain-join':
-    command  => 'if ((Get-CimInstance Win32_ComputerSystem).PartOfDomain) { exit 0 } else { Write-Error "Computer is NOT joined to a domain"; exit 1 }',
+    command  => "if ((Get-LabDomain).PartOfDomain -and (Get-LabDomain).Domain -eq '${domain}') { Write-Output 'Domain verification successful: joined to ${domain}'; exit 0 } else { Write-Error 'Computer is NOT joined to ${domain}'; exit 1 }",
     provider => powershell,
     require  => Exec['join-domain'],
   }
@@ -53,7 +53,7 @@ class profile::windows_domain_join {
 
   exec { 'reboot-after-domain-join':
     command     => 'shutdown.exe /r /t 10 /c "Rebooting after successful domain join"',
-    provider    => shell,
+    provider    => powershell,
     path        => ['C:/Windows/System32'],
     refreshonly => true,
     subscribe   => Exec['verify-domain-join'],
