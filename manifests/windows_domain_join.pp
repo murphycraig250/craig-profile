@@ -51,11 +51,11 @@ class profile::windows_domain_join {
   # Reboot ONLY after successful domain membership verification
   # --------------------------------------------------------------------------
 
-  exec { 'reboot-after-domain-join':
-    command     => 'shutdown.exe /r /t 10 /c "Rebooting after successful domain join"',
-    provider    => powershell,
-    path        => ['C:/Windows/System32'],
-    refreshonly => true,
-    subscribe   => Exec['verify-domain-join'],
-  }
+  # exec { 'reboot-after-domain-join':
+  #   command     => 'shutdown.exe /r /t 10 /c "Rebooting after successful domain join"',
+  #   provider    => powershell,
+  #   path        => ['C:/Windows/System32'],
+  #   refreshonly => true,
+  #   subscribe   => Exec['verify-domain-join'],
+  # }
 }
