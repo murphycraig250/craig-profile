@@ -7,7 +7,7 @@
 
     FunctionsToExport = @(
         'Test-LabTools'
-        'Get-LabDomainMembership'
+        'Get-LabDomain'
         'Join-LabDomain'
     )
 }
