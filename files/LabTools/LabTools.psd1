@@ -8,6 +8,6 @@
     FunctionsToExport = @(
         'Test-LabTools'
         'Get-LabDomain'
-        'Join-LabDomain'
+        'Set-LabDomain'
     )
 }

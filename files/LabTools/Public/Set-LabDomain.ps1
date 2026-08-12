@@ -1,4 +1,4 @@
-function Join-LabDomain {
+function Set-LabDomain {
     param(
         [Parameter(Mandatory)]
         [string]$DomainName,
