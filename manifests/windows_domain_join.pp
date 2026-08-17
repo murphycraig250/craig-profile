@@ -4,13 +4,29 @@ class profile::windows_domain_join {
   $domain_ou = 'OU=Lab Computers,DC=localdomain,DC=test'
 
   # --------------------------------------------------------------------------
+  # Disable IPv6 Router Discovery
+  #
+  # IPv6 remains enabled, but we prevent the router from advertising external
+  # IPv6 DNS servers to the Windows client. This allows AD DNS to be handled
+  # consistently by the domain controller.
+  # --------------------------------------------------------------------------
+
+  exec { 'disable-ipv6-router-discovery':
+    command  => 'Set-NetIPInterface -InterfaceAlias "Ethernet" -AddressFamily IPv6 -RouterDiscovery Disabled',
+    provider => powershell,
+    unless   => 'if ((Get-NetIPInterface -InterfaceAlias "Ethernet" -AddressFamily IPv6).RouterDiscovery -eq "Disabled") { exit 0 } else { exit 1 }',
+  }
+
+  # --------------------------------------------------------------------------
   # Configure DNS to use the domain controller
   # --------------------------------------------------------------------------
 
   exec { 'configure-domain-dns':
     command  => "Get-NetAdapter | Where-Object { \$_.Status -eq 'Up' } | ForEach-Object { Set-DnsClientServerAddress -InterfaceIndex \$_.ifIndex -ServerAddresses '${domain_dns}' }",
     provider => powershell,
+    require  => Exec['disable-ipv6-router-discovery'],
   }
+
   # --------------------------------------------------------------------------
   # Verify that AD DNS is actually responding
   # --------------------------------------------------------------------------
