@@ -31,7 +31,7 @@ class profile::linux_firewall::rules {
   # --- DOCKER SPECIFIC RULES ---
   firewall { '200 block bad actor from containers':
     chain  => 'DOCKER-USER',
-    source => '192.168.1.105',
+    source => '192.168.0.105',
     jump   => 'drop',
     proto  => 'all',
   }

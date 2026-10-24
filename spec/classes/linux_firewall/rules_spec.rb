@@ -19,7 +19,7 @@ describe 'profile::linux_firewall::rules' do
 
       it { is_expected.to contain_firewall('100 allow ssh access').with_dport(22).with_proto('tcp') }
       it { is_expected.to contain_firewall('101 allow http and https').with_dport([80, 443]) }
-      it { is_expected.to contain_firewall('200 block bad actor from containers').with_chain('DOCKER-USER').with_source('192.168.1.105').with_jump('drop') }
+      it { is_expected.to contain_firewall('200 block bad actor from containers').with_chain('DOCKER-USER').with_source('192.168.0.105').with_jump('drop') }
     end
   end
 end
