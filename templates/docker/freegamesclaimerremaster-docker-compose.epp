@@ -4,9 +4,8 @@ services:
   # ---------------------------------------------------------------
   app:
     # To run the experimental development build, set FGC_TAG=dev in your .env file!
-    image: ghcr.io/p-adamiec/free-games-claimer-remaster:${FGC_TAG:-latest}
+    image: ghcr.io/p-adamiec/free-games-claimer-remaster:latest
     container_name: fgc-remaster
-    build: .
     restart: unless-stopped
     tty: true
     stdin_open: true
@@ -14,8 +13,7 @@ services:
       - "${NOVNC_PORT:-7080}:7080"
     volumes:
       - fgc_data:/fgc/data
-    env_file:
-      - .env
+    environment:
     healthcheck:
       test: pgrep python3 && curl --fail http://localhost:7080 || exit 1
       interval: 10s
