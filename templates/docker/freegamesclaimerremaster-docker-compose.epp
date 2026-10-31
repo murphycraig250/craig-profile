@@ -14,6 +14,10 @@ services:
     volumes:
       - fgc_data:/fgc/data
     environment:
+      - SHOW=1
+      - WIDTH=1280
+      - HEIGHT=720
+      - NOVNC_PORT=7080
     healthcheck:
       test: pgrep python3 && curl --fail http://localhost:7080 || exit 1
       interval: 10s
