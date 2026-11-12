@@ -9,6 +9,9 @@
 # @param port Optional port number for the application
 # @param docker_user Optional Docker registry username
 # @param docker_password Optional Docker registry password
+# @param eg_email Optional Epic Games Username
+# @param eg_password Optional Epic Games password
+# @param discord_webhook Optional Discord Webhook URL
 # @param up_args Optional arguments to pass to docker-compose up
 #
 # @example
@@ -24,6 +27,9 @@ define profile::linux_docker_app (
   Optional[String] $port = undef,
   Optional[Variant[String, Sensitive[String]]] $docker_user     = undef,
   Optional[Variant[String, Sensitive[String]]] $docker_password = undef,
+  Optional[Variant[String, Sensitive[String]]] $eg_email        = undef,
+  Optional[Variant[String, Sensitive[String]]] $eg_password     = undef,
+  Optional[Variant[String, Sensitive[String]]] $discord_webhook = undef,
   Optional[String] $up_args = undef,
   Optional[String] $depends_on = '',
 ) {
@@ -67,6 +73,9 @@ define profile::linux_docker_app (
     content => epp("profile/docker/${app_name}-docker-compose.epp", {
         'docker_user'     => $docker_user =~ Sensitive ? { true => $docker_user.unwrap,     default => $docker_user },
         'docker_password' => $docker_password =~ Sensitive ? { true => $docker_password.unwrap, default => $docker_password },
+        'eg_email'     => $eg_email =~ Sensitive ? { true => $eg_email.unwrap,     default => $eg_email },
+        'eg_password' => $eg_password =~ Sensitive ? { true => $eg_password.unwrap, default => $eg_password },
+        'discord_webhook'     => $discord_webhook =~ Sensitive ? { true => $discord_webhook.unwrap,     default => $discord_webhook }
     }),
     require => File[$app_path],
   }
