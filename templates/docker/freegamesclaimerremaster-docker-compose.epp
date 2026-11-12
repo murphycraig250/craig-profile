@@ -26,6 +26,7 @@ services:
       - EG_PASSWORD=<%= $eg_password %>
       - DISCORD_WEBHOOK=<%= $discord_webhook %>
       - STORES=steam,epic
+      - FGC_TAG=dev
     healthcheck:
       test: pgrep python3 && curl --fail http://localhost:7080 || exit 1
       interval: 10s
