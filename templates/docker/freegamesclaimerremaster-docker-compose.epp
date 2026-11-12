@@ -1,3 +1,7 @@
+<%- | String $eg_email,
+      String $eg_password,
+      String $discord_webhook
+| -%>
 services:
   # ---------------------------------------------------------------
   # Free Games Claimer Remaster
@@ -18,10 +22,13 @@ services:
       - WIDTH=1280
       - HEIGHT=720
       - NOVNC_PORT=7080
+      - EG_EMAIL=<%= $eg_email %>
+      - EG_PASSWORD=<%= $eg_password %>
+      - DISCORD_WEBHOOK=<%= $discord_webhook %>
+      - STORES=steam,eg
     healthcheck:
       test: pgrep python3 && curl --fail http://localhost:7080 || exit 1
       interval: 10s
       timeout: 5s
-
 volumes:
   fgc_data:
