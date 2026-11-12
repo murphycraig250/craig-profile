@@ -71,11 +71,11 @@ define profile::linux_docker_app (
     group   => $deploy_group,
     mode    => '0600',
     content => epp("profile/docker/${app_name}-docker-compose.epp", {
-        'docker_user'     => $docker_user =~ Sensitive ? { true => $docker_user.unwrap,     default => $docker_user },
-        'docker_password' => $docker_password =~ Sensitive ? { true => $docker_password.unwrap, default => $docker_password },
-        'eg_email'     => $eg_email =~ Sensitive ? { true => $eg_email.unwrap,     default => $eg_email },
-        'eg_password' => $eg_password =~ Sensitive ? { true => $eg_password.unwrap, default => $eg_password },
-        'discord_webhook'     => $discord_webhook =~ Sensitive ? { true => $discord_webhook.unwrap,     default => $discord_webhook }
+        'docker_user'     => $docker_user =~ Sensitive ? { true => $docker_user.'unwrap',     default => $docker_user },
+        'docker_password' => $docker_password =~ Sensitive ? { true => $docker_password.'unwrap', default => $docker_password },
+        'eg_email'        => $eg_email =~ Sensitive ? { true => $eg_email.'unwrap',     default => $eg_email },
+        'eg_password'     => $eg_password =~ Sensitive ? { true => $eg_password.'unwrap', default => $eg_password },
+        'discord_webhook' => $discord_webhook =~ Sensitive ? { true => $discord_webhook.'unwrap',     default => $discord_webhook }
     }),
     require => File[$app_path],
   }
